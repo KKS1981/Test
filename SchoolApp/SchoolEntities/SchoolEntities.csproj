@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8056FF15-9BB7-4932-B566-40B6E1CA2E89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SchoolEntities</RootNamespace>
+    <AssemblyName>SchoolEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\AcademicTerm.cs" />
+    <Compile Include="Entities\AcademicYear.cs" />
+    <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\ActivityGrade.cs" />
+    <Compile Include="Entities\ActivityGradingSchema.cs" />
+    <Compile Include="Entities\ActivityResult.cs" />
+    <Compile Include="Entities\AssessmentSchema.cs" />
+    <Compile Include="Entities\Attendance.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Class.cs" />
+    <Compile Include="Entities\ClassLabel.cs" />
+    <Compile Include="Entities\ClassTeacher.cs" />
+    <Compile Include="Entities\DescriptiveIndicator.cs" />
+    <Compile Include="Entities\Exam.cs" />
+    <Compile Include="Entities\ExamGradingSchema.cs" />
+    <Compile Include="Entities\ExamResult.cs" />
+    <Compile Include="Entities\ExamSection.cs" />
+    <Compile Include="Entities\ExamSectionResult.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\HealthInformation.cs" />
+    <Compile Include="Entities\House.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\ITrackable.cs" />
+    <Compile Include="Entities\IUser.cs" />
+    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Entities\Minority.cs" />
+    <Compile Include="Migrations\201509291950130_test.cs" />
+    <Compile Include="Migrations\201509291950130_test.Designer.cs">
+      <DependentUpon>201509291950130_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510040534298_TecherGenderNullable.cs" />
+    <Compile Include="Migrations\201510040534298_TecherGenderNullable.Designer.cs">
+      <DependentUpon>201510040534298_TecherGenderNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510040556315_MakeTeacherPincodeString.cs" />
+    <Compile Include="Migrations\201510040556315_MakeTeacherPincodeString.Designer.cs">
+      <DependentUpon>201510040556315_MakeTeacherPincodeString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510040818562_RemoveTeacherMaster.cs" />
+    <Compile Include="Migrations\201510040818562_RemoveTeacherMaster.Designer.cs">
+      <DependentUpon>201510040818562_RemoveTeacherMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510071539097_removeRegistrationId.cs" />
+    <Compile Include="Migrations\201510071539097_removeRegistrationId.Designer.cs">
+      <DependentUpon>201510071539097_removeRegistrationId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510081829589_RemoveMaxLength.cs" />
+    <Compile Include="Migrations\201510081829589_RemoveMaxLength.Designer.cs">
+      <DependentUpon>201510081829589_RemoveMaxLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\ScholasticSection.cs" />
+    <Compile Include="Entities\SectionLabel.cs" />
+    <Compile Include="Entities\SelfAwareness.cs" />
+    <Compile Include="Entities\Settings.cs" />
+    <Compile Include="Entities\SmsCampaign.cs" />
+    <Compile Include="Entities\SmsReport.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\StudentAssignment.cs" />
+    <Compile Include="Entities\StudentAttendances.cs" />
+    <Compile Include="Entities\StudentMaster.cs" />
+    <Compile Include="Entities\StudentScore.cs" />
+    <Compile Include="Entities\Subject.cs" />
+    <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\TeacherClassSubjectMap.cs" />
+    <Compile Include="Entities\TeacherMaster.cs" />
+    <Compile Include="Entities\TeacherUpload.cs" />
+    <Compile Include="SchoolDb.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509291950130_test.resx">
+      <DependentUpon>201509291950130_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510040534298_TecherGenderNullable.resx">
+      <DependentUpon>201510040534298_TecherGenderNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510040556315_MakeTeacherPincodeString.resx">
+      <DependentUpon>201510040556315_MakeTeacherPincodeString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510040818562_RemoveTeacherMaster.resx">
+      <DependentUpon>201510040818562_RemoveTeacherMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510071539097_removeRegistrationId.resx">
+      <DependentUpon>201510071539097_removeRegistrationId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510081829589_RemoveMaxLength.resx">
+      <DependentUpon>201510081829589_RemoveMaxLength.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

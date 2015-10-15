@@ -1,0 +1,32 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+@{
+    var hasserf = Model.Attributes.Any(x => x.Key == "sref");
+    var href = hasserf ? Model.Attributes.First(x => x.Key == "sref").Value : Model.Url;
+
+}
+@if (hasserf)
+{
+    <a ui-sref="@href">
+        <i class="fa fa-book"></i>
+        <span>@Model.Title</span>
+        @if (Model.Children.Any())
+        {
+            <i class="fa fa-angle-left pull-right"></i>
+        }
+
+    </a>
+}
+else
+{
+<a href="@href">
+        <i class="fa fa-book"></i>
+        <span>@Model.Title</span>
+        @if (Model.Children.Any())
+        {
+            <i class="fa fa-angle-left pull-right"></i>
+        }
+
+    </a>
+}

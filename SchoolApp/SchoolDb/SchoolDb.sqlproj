@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SchoolDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{aafade32-ca10-4004-988e-33963357a13c}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SchoolDb</RootNamespace>
+    <AssemblyName>SchoolDb</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\StudentMasters.sql" />
+    <Build Include="dbo\Tables\Students.sql" />
+    <Build Include="dbo\Tables\AcademicYears.sql" />
+    <Build Include="dbo\Tables\AcademicTerms.sql" />
+    <Build Include="dbo\Tables\AssessmentSchemas.sql" />
+    <Build Include="dbo\Tables\Exams.sql" />
+    <Build Include="dbo\Tables\ExamResults.sql" />
+    <Build Include="dbo\Tables\Subjects.sql" />
+    <Build Include="dbo\Tables\Classes.sql" />
+    <Build Include="dbo\Tables\SectionLabels.sql" />
+    <Build Include="dbo\Tables\ClassLabels.sql" />
+    <Build Include="dbo\Tables\Activities.sql" />
+    <Build Include="dbo\Tables\DescriptiveIndicators.sql" />
+    <Build Include="dbo\Tables\ActivityGrades.sql" />
+    <Build Include="dbo\Tables\ActivityResults.sql" />
+    <Build Include="dbo\Tables\ScholasticSections.sql" />
+    <Build Include="dbo\Tables\Teachers.sql" />
+    <Build Include="dbo\Tables\TeacherClassSubjectMaps.sql" />
+    <Build Include="dbo\Tables\ClassTeachers.sql" />
+    <Build Include="dbo\Tables\SmsReports.sql" />
+    <Build Include="dbo\Tables\Attendances.sql" />
+    <Build Include="dbo\Tables\StudentAssignments.sql" />
+    <Build Include="dbo\Tables\Files.sql" />
+    <Build Include="dbo\Tables\ExamSections.sql" />
+    <Build Include="dbo\Tables\ExamSectionResults.sql" />
+    <Build Include="dbo\Tables\Houses.sql" />
+    <Build Include="dbo\Tables\SelfAwarenesses.sql" />
+    <Build Include="dbo\Tables\HealthInformations.sql" />
+    <Build Include="dbo\Tables\StudentScores.sql" />
+    <Build Include="dbo\Tables\StudentAttendances.sql" />
+    <Build Include="dbo\Tables\Categories.sql" />
+    <Build Include="dbo\Tables\Minorities.sql" />
+    <Build Include="dbo\Tables\ExamGradingSchemas.sql" />
+    <Build Include="dbo\Tables\ActivityGradingSchemas.sql" />
+    <Build Include="dbo\Tables\TeacherUploads.sql" />
+    <Build Include="dbo\Tables\Settings.sql" />
+    <Build Include="dbo\Tables\__MigrationHistory.sql" />
+    <Build Include="dbo\Tables\Menus.sql" />
+    <Build Include="dbo\Tables\ClassLabelAssessmentSchemas.sql" />
+    <Build Include="dbo\Tables\ClassSubject.sql" />
+    <Build Include="dbo\Tables\DescriptiveIndicatorActivityGrades.sql" />
+    <Build Include="dbo\Tables\ActivityDescriptiveIndicator.sql" />
+    <Build Include="dbo\Tables\TeacherSubjects.sql" />
+    <Build Include="dbo\Tables\TeacherActivity.sql" />
+    <Build Include="dbo\Tables\ActivityTeacherClassSubjectMap.sql" />
+    <Build Include="dbo\Tables\ClassActivity.sql" />
+    <Build Include="dbo\Tables\ExamClass.sql" />
+    <Build Include="dbo\Tables\SubjectTeacherClassSubjectMap.sql" />
+    <Build Include="dbo\Tables\StudentSubject.sql" />
+    <Build Include="dbo\Tables\StudentActivity.sql" />
+    <Build Include="dbo\Tables\Student_Ignored_Subjects.sql" />
+    <Build Include="dbo\Tables\Student_Ignored_Activities.sql" />
+    <Build Include="dbo\Tables\StudentAttendancesStudents.sql" />
+  </ItemGroup>
+</Project>
