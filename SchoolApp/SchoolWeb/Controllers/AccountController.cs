@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using SchoolWeb.Models;
 using AccountService;
+using SchoolService;
 
 namespace SchoolWeb.Controllers
 {
@@ -337,6 +338,13 @@ namespace SchoolWeb.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            var accountService = (IAccountService)SingletonContainer.Instance.Get<IAccountService>();
+            var key = accountService.GenerateAuthKeyByUserName(user.UserName);
+            if (!string.IsNullOrEmpty(key))
+            {
+                Response.Cookies.Add(new HttpCookie("key", key));
+            }
+
         }
 
         private void AddErrors(IdentityResult result)
@@ -379,7 +387,8 @@ namespace SchoolWeb.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
