@@ -1,9 +1,9 @@
-﻿@model SchoolWeb.Models.LoginViewModel
+@model SchoolWeb.Models.LoginViewModel
 
 @{
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
-   
+
 }
 <div class="login-box">
 
@@ -13,14 +13,14 @@
     </div>
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+        @using (Html.BeginRouteForm("Default", new { action = "Login", controller = "Account", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
 
             @Html.ValidationSummary(true)
             <div class="form-group has-feedback">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control",  required = "true", placeholder = "Email" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "true", placeholder = "Email" })
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
 
