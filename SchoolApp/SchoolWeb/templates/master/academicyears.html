@@ -1,11 +1,12 @@
 ﻿<section class="content-header">
     <h1>Academic Years</h1>
+    <a ui-sref="createyear">Create New</a>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <p>{{message}}</p>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" functionname='yeartable' data="acedmicYears" datatable>
         <thead>
             <tr>
                 <th>Strat Year</th>
@@ -14,8 +15,6 @@
                 <th>IS Active</th>
             </tr>
         </thead>
-        <tbody>
-            
-        </tbody>
+        <tbody></tbody>
     </table>
 </section>
