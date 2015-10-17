@@ -115,5 +115,19 @@ namespace AccountService
             }
             return false;
         }
+
+
+        public string GenerateAuthKeyByUserName(string username, string deviceID="")
+        {
+            var user = _manager.FindByName<ApplicationUser,string>(username);
+            if (user != null)
+            {
+                var key = Guid.NewGuid().ToString().Replace("-", "");
+                user.Keys.Add(new UserKey { DeviceID = deviceID, ExpiredOn = DateTime.UtcNow.AddYears(1), Key = key, User = user, Id = Guid.NewGuid().ToString() });
+                _context.SaveChanges();
+                return key;
+            }
+            throw new Exception("Invalid username");
+        }
     }
 }

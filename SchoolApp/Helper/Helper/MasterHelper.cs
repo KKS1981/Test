@@ -28,7 +28,7 @@ namespace Helper.Helper
             year.Label = string.Format("{0}-{1}", year.StartYear, year.EndYear);
             _uow.AcademicYears.Add(year);
             _uow.AcademicYears.SaveChanges();
-            var model = Mapper.Map<AcademicYear, AcademicYearModel>(year);
+            var model = ObjectMapper.MapToAcademicYearModel(year);
             return model;
         }
 
@@ -50,13 +50,14 @@ namespace Helper.Helper
 
         public void SetCurrentAcademicYear(int id)
         {
-            var year = _uow.AcademicYears.FindById(id);
-            year.IsCurrent = true;
             var years = _uow.AcademicYears.Find(x => x.IsCurrent).ToList();
             foreach (var item in years)
             {
                 item.IsCurrent = false;
             }
+            var year = _uow.AcademicYears.FindById(id);
+            year.IsCurrent = true;
+            
             _uow.AcademicYears.SaveChanges();
 
         }

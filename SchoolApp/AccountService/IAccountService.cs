@@ -10,10 +10,12 @@ namespace AccountService
         bool IsInRole(string role, IIdentity identity);
 
         UserModel CreateUser(string userName, string passWord);
-        UserModel CreateUser(string userName, string passWord,string role);
+        UserModel CreateUser(string userName, string passWord, string role);
 
         UserModel CreateUser(string userName, string passWord, params string[] roles);
 
         bool IsInRole(string[] roles, IIdentity _identity);
+
+        string GenerateAuthKeyByUserName(string username, string deviceId = "");
     }
 }
