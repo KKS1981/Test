@@ -1,44 +1,31 @@
 ﻿var app = angular.module(appname);
 
-app.controllerProvider.register('acedmicYearController', ['$scope', '$resource', '$compile', '$state', 'token', function ($scope, $resource, $compile, $state, token) {
-    //get token from cokkies
-    var key = token.gettoken();
+app.controllerProvider.register('acedmicYearController', ['$scope', '$compile', '$state', 'ajax', function ($scope, $compile, $state, ajax) {
+
     //GetAccedmicyears
-    var query = $resource('/SVC/MaterService/GetAccedmicyears', {}, {
-        action: { method: 'GET', isArray: true, headers: { token: key, Accept: 'application/json' } }
-    });
-    var promise = query.action().$promise;
-    promise.then(function (data) {
+    ajax('/SVC/MaterService/GetAccedmicyears', {}, { method: 'GET', isArray: true, headers: { Accept: 'application/json' } }, null, function (data) {
         $scope.acedmicYears = data
-    }, function (data) { console.log(data) });
+    });
+    //var promise = query.action().$promise;
+    //promise.then(function (data) {
+    //    $scope.acedmicYears = data
+    //}, function (data) { console.log(data) });
     //Create AcademicYear
     $scope.createyear = function createyear() {
-        var query = $resource('/SVC/MaterService/CreateAccedmiYear', {}, {
-            action: { method: 'POST', isArray: false, headers: { token: key, Accept: 'application/json' } }
-        });
-        var promise = query.action($scope.year).$promise;
-        promise.then(function (data) {
+        var query = ajax('/SVC/MaterService/CreateAccedmiYear', {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, $scope.year, function (data) {
             $scope.acedmicYears = data
             $state.go('academicyears');
-        }, function (data) { });
+        });
     }
     //Make year Active
     $scope.makeActive = function (yearid) {
-        var query = $resource('/SVC/MaterService/SetCurrentAcademicYear', {}, {
-            action: { method: 'POST', headers: { token: key, Accept: 'application/json' } }
-        });
-        var promise = query.action(yearid).$promise;
-        promise.then(function () {
-            //after making year active fetch all years.
-            var query = $resource('/SVC/MaterService/GetAccedmicyears', {}, {
-                action: { method: 'GET', isArray: true, headers: { token: key, Accept: 'application/json' } }
-            });
-            var promise = query.action().$promise;
-            promise.then(function (data) {
+        var query = ajax('/SVC/MaterService/SetCurrentAcademicYear', {}, { method: 'POST', headers: { Accept: 'application/json' } }, yearid, function (data) {
+            ajax('/SVC/MaterService/GetAccedmicyears', {}, { method: 'GET', isArray: true, headers: { Accept: 'application/json' } }, null, function (data) {
                 $scope.acedmicYears = data
-            }, function (data) { });
-
-        });
+            });
+        }
+        );
+        
     }
 
 

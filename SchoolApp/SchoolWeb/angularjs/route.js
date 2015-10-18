@@ -25,5 +25,6 @@ app.config(['$urlRouterProvider', '$stateProvider', '$controllerProvider', funct
     });
     sp.state('createyear', { url: '/createyear', templateUrl: '/templates/master/createyear.html', controller: 'acedmicYearController', resolve: route(['/javascripts/controllers/masters/acedmicyearcontrooler.js']) });
     sp.state('home', { url: '/', templateUrl: '/templates/master/home.html' });
+    sp.state('error', { url: '/error', templateUrl: '/templates/error.html' });
 
 }]);

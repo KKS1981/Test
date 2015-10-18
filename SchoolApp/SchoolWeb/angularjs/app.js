@@ -40,4 +40,42 @@ app.factory("token", [function () {
 }
 ]);
 
+app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token, $state) {
+    var obj = function (url, paramDefaults, info, data, success, fail) {
+        //get token from cokkies
+        var key = token.gettoken();
+        if (info != undefined && info != null) {
+            if (info.headers == null || info.headers == undefined) {
+                info.headers = { token: key };
+            }
+            else {
+                info.headers.token = key;
+            }
+        }
+        var query = $resource(url, paramDefaults, {
+            action: info
+        });
+        if (data != null && data != undefined)
+            var promise = query.action(data).$promise;
+        else
+            var promise = query.action().$promise;
+        promise.then(
+            function (data) {
+                if (typeof success == 'function') {
+                    success(data);
+                }
+            },
+        function (data) {
+            if (typeof fail == 'function') {
+                fail(data);
+            }
+            else {
+                $state.go('error');
+            }
+        });
+    }
+    return obj;
+
+}]);
+
 

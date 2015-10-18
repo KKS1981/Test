@@ -1,6 +1,20 @@
 ﻿<section class="content-header">
     <h1>Classes</h1>
+    <a ui-sref="createclass" class="btn btn-primary">Create Class</a>
 </section>
 
 <!-- Main content -->
-<section class="content"></section>
+<section class="content">
+    <table class="table table-bordered table-hover" functionname='classtable' data="classes" datatable>
+        <thead>
+            <tr>
+                <th>Strat Year</th>
+                <th>End Year</th>
+                <th>Label</th>
+                <th>IS Active</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</section>

@@ -252,6 +252,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="javascripts\controllers\masters\acedmicyearcontrooler.js" />
+    <Content Include="javascripts\controllers\masters\classcontroller.js" />
     <Content Include="javascripts\require.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
@@ -976,9 +977,12 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="templates\error.html" />
     <Content Include="templates\master\academicyears.html" />
     <Content Include="templates\master\classes.html" />
+    <Content Include="templates\master\CreateClassLabel.html" />
     <Content Include="templates\master\createyear.html" />
+    <Content Include="templates\master\EditClassLabel.html" />
     <Content Include="templates\master\home.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
