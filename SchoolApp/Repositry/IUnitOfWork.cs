@@ -49,5 +49,7 @@ namespace Repository {
         IRepository<StudentAttendances> StudentAttendances { get; }
         IRepository<ExamSection> ExamSections { get; }
         IRepository<ExamSectionResult> ExamSectionResults { get; }
+
+        void SaveChanges();
     }
 }

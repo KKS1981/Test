@@ -7,7 +7,9 @@
                     <label for="ClassLabelId">Class Label</label>
                 </div>
                 <div class="col-sm-6">
-                    <select name="ClassLabelId" ng-model="ClassLabelId" ng-options="item.Id as item.Name for item in classLabels" class="chosen" watch="classLabels"></select>
+                    <select name="ClassLabelId" ng-model="ClassLabelId" ng-options="item.Id as item.Name for item in classLabels" class="chosen" watch="classLabels">
+                        <option value=""> </option>
+                    </select>
                 </div>
                 <div class="col-sm-3">
                     <a class="btn btn-primary" ui-sref="createclasslabel">Add Class Label</a>

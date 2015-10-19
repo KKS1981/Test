@@ -242,7 +242,8 @@ namespace Helper
             ClassesViewModel model = new ClassesViewModel();
             model.ClassLablel = @class.ClassLabel.RomanName;
             model.Label = @class.Label;
-            model.ClassTeacher = @class.ClassTeacher.Teacher.FullName;
+            if (@class.ClassTeacher != null)
+                model.ClassTeacher = @class.ClassTeacher.Teacher.FullName;
             model.ID = @class.Id;
             model.NumericCode = @class.ClassLabel.NumericCode;
             return model;

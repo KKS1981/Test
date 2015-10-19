@@ -2,77 +2,61 @@
 using Repository;
 using Repository.SqlRepositories;
 using Repositry;
+using System.Data.Entity;
 
 namespace Repository
 {
     public class SqlUnitOfWork : IUnitOfWork
     {
+        private DbContext _dbcontext;
 
-        public SqlUnitOfWork(IRepository<StudentMaster> studentMasters,
-                             IAcademicYearRepository academicYears, IRepository<AcademicTerm> academicTerms,
-                             IStudentRepository students, IRepository<ClassLabel> classLabels,
-                             IRepository<Class> classes,
-                             IRepository<Subject> subjects, IRepository<Activity> activities,
-                             IRepository<DescriptiveIndicator> descriptiveIndicators, IRepository<Exam> exams,
-                             IRepository<AssessmentSchema> assessmentSchemas, IRepository<ExamResult> examResults,
-                             IRepository<ActivityGrade> activityGrades,
-                             IRepository<ScholasticSection> scholasticSections, IRepository<House> houses,
-                             IRepository<ExamGradingSchema> examGradingSchemas,
-                             IRepository<ActivityGradingSchema> activityGradingSchemas,
-                             IRepository<Attendance> attendances, 
-                             IRepository<SelfAwareness> selfAwarenesses,
-                             IRepository<HealthInformation> healthInformations,
-                             IRepository<TeacherClassSubjectMap> teacherClassSubjectMaps, IRepository<Teacher> teachers,
-                             IRepository<ClassTeacher> classTeachers, IRepository<ActivityResult> activityResults,
-                             IRepository<Minority> minorities, IRepository<Category> categories,
-                             IRepository<StudentScore> studentScores,
-                             IRepository<StudentAssignment> studentAssignments, IRepository<SmsReport> smsReports,
-                             IRepository<File> files, IRepository<TeacherUpload> teacherUploads,
-                             IRepository<Settings> settings, IRepository<Menu> menus, IRepository<ExamSection> examSection,
-                             IRepository<ExamSectionResult> examSectionResult, IRepository<StudentAttendances> studentAttendances)
+        public SqlUnitOfWork(DbContext context)
         {
-            StudentMasters = studentMasters;
-            AcademicYears = academicYears;
-            AcademicTerms = academicTerms;
-            Students = students;
-            ClassLabels = classLabels;
-            
-            Classes = classes;
-            Subjects = subjects;
-            Activities = activities;
-            DescriptiveIndicators = descriptiveIndicators;
-            Exams = exams;
-            AssessmentSchemas = assessmentSchemas;
-            ExamResults = examResults;
-            ActivityGrades = activityGrades;
-            ScholasticSections = scholasticSections;
-            Houses = houses;
-            ExamGradingSchemas = examGradingSchemas;
-            ActivityGradingSchemas = activityGradingSchemas;
-            Attendances = attendances;
-            
-            SelfAwarenesses = selfAwarenesses;
-            HealthInformations = healthInformations;
-            TeacherClassSubjectMaps = teacherClassSubjectMaps;
-            Teachers = teachers;
-            ClassTeachers = classTeachers;
-            ActivityResults = activityResults;
-            Minorities = minorities;
-            Categories = categories;
-            StudentScores = studentScores;
-            StudentAssignments = studentAssignments;
-            SmsReports = smsReports;            
-            TeacherUploads = teacherUploads;            
-            Settings = settings;
-            Menus = menus;
-            StudentAttendances = studentAttendances;
-            ExamSections = examSection;
-            ExamSectionResults = examSectionResult;
+            _dbcontext = context;
+            StudentMasters = new SqlRepository<StudentMaster>(context);
+            AcademicYears = new AcademicYearRepository(context);
+            AcademicTerms = new SqlRepository<AcademicTerm>(context);
+            Students = new StudentRepository(context);
+            ClassLabels = new SqlRepository<ClassLabel>(context);
+
+            Classes = new SqlRepository<Class>(context);
+            Subjects = new SqlRepository<Subject>(context);
+            Activities = new SqlRepository<Activity>(context);
+            DescriptiveIndicators = new SqlRepository<DescriptiveIndicator>(context);
+            Exams = new SqlRepository<Exam>(context);
+            AssessmentSchemas = new SqlRepository<AssessmentSchema>(context);
+            ExamResults = new SqlRepository<ExamResult>(context);
+            ActivityGrades = new SqlRepository<ActivityGrade>(context);
+            ScholasticSections = new SqlRepository<ScholasticSection>(context);
+            Houses = new SqlRepository<House>(context);
+            ExamGradingSchemas = new SqlRepository<ExamGradingSchema>(context);
+            ActivityGradingSchemas = new SqlRepository<ActivityGradingSchema>(context);
+            Attendances = new SqlRepository<Attendance>(context);
+
+            SelfAwarenesses = new SqlRepository<SelfAwareness>(context);
+            HealthInformations = new SqlRepository<HealthInformation>(context);
+            TeacherClassSubjectMaps = new SqlRepository<TeacherClassSubjectMap>(context);
+            Teachers = new SqlRepository<Teacher>(context);
+            ClassTeachers = new SqlRepository<ClassTeacher>(context);
+            ActivityResults = new SqlRepository<ActivityResult>(context);
+            Minorities = new SqlRepository<Minority>(context);
+            Categories = new SqlRepository<Category>(context);
+            StudentScores = new SqlRepository<StudentScore>(context);
+            StudentAssignments = new SqlRepository<StudentAssignment>(context);
+            SmsReports = new SqlRepository<SmsReport>(context);
+            TeacherUploads = new SqlRepository<TeacherUpload>(context);
+            Settings = new SqlRepository<Settings>(context);
+            Menus = new SqlRepository<Menu>(context);
+            StudentAttendances = new SqlRepository<StudentAttendances>(context);
+            ExamSections = new SqlRepository<ExamSection>(context);
+            ExamSectionResults = new SqlRepository<ExamSectionResult>(context);
+
         }
+
 
         #region IUnitOfWork Members
 
-        
+
 
         public IRepository<StudentMaster> StudentMasters { get; private set; }
 
@@ -152,5 +136,11 @@ namespace Repository
 
 
         #endregion
+
+
+        public void SaveChanges()
+        {
+            _dbcontext.SaveChanges();
+        }
     }
 }

@@ -97,9 +97,21 @@ namespace Helper.Helper
 
             var label = string.Format("{0}-{1}", classLable.RomanName, model.Section);
             var @class = new Class { ClassLabel_Id = model.ClassLabelId, Label = label, Section = model.Section };
-            @class.ClassTeacher = new ClassTeacher { TeacherMaster_Id = model.TeacherId };
             _uow.Classes.Add(@class);
             _uow.Classes.SaveChanges();
+            var teacher = _uow.ClassTeachers.Single(x => x.TeacherMaster_Id == model.TeacherId);
+            if (teacher != null)
+            {
+                //assign teacher to class
+
+                teacher.Class = @class;
+            }
+            else
+            {
+                teacher = new ClassTeacher { Class = @class, TeacherMaster_Id = model.TeacherId };
+                _uow.ClassTeachers.Add(teacher);
+            }
+            _uow.SaveChanges();
         }
 
         public EditClass EditClass(EditClass model)
@@ -128,7 +140,7 @@ namespace Helper.Helper
 
         public List<ClassesViewModel> GetClassList()
         {
-            var classes = _uow.Classes.Fetch().ToList();
+            var classes = _uow.Classes.Fetch(x=>x.ClassTeacher.Teacher).ToList();
             return classes.Select(x => ObjectMapper.MapToClassesViewModel(x)).ToList();
         }
     }

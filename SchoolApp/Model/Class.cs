@@ -57,7 +57,7 @@ namespace Model
         public string ClassLablel { get; set; }
         [DataMember]
         public int NumericCode { get; set; }
-
+        [DataMember]
         public string ClassTeacher { get; set; }
     }
 }
