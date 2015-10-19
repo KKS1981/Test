@@ -24,7 +24,13 @@ app.directive('chosen', [function () {
     var obj = {};
     obj.restrict = 'C',
     obj.link = function (scope, element, attribute) {
-        $(element).chosen();
+
+        scope.$watch(attribute.watch, function (value1,value2) {
+            $(element).chosen({ width: "100%" });
+            
+            $(element).trigger('chosen:updated');
+        });
+
     }
     return obj;
 }])
