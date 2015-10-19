@@ -13,8 +13,7 @@ namespace Model
         [DataMember(IsRequired = true)]
         public string Name { get; set; }
 
-        [DataMember(IsRequired = true)]
-        public string RomanName { get; set; }
+       
 
         [DataMember(IsRequired = true)]
         public int NumericCode { get; set; }
@@ -27,10 +26,7 @@ namespace Model
         public int Id { get; set; }
 
         [DataMember(IsRequired = true)]
-        public string Name { get; set; }
-
-        [DataMember(IsRequired = true)]
-        public string RomanName { get; set; }
+        public string Name { get; set; }        
 
         [DataMember(IsRequired = true)]
         public int NumericCode { get; set; }

@@ -236,6 +236,17 @@ namespace Helper
             model.StartYear = year.StartYear;
             return model;
         }
+
+        internal static ClassesViewModel MapToClassesViewModel(Class @class)
+        {
+            ClassesViewModel model = new ClassesViewModel();
+            model.ClassLablel = @class.ClassLabel.RomanName;
+            model.Label = @class.Label;
+            model.ClassTeacher = @class.ClassTeacher.Teacher.FullName;
+            model.ID = @class.Id;
+            model.NumericCode = @class.ClassLabel.NumericCode;
+            return model;
+        }
     }
 
 }

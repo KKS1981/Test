@@ -20,6 +20,14 @@ app.directive('datatable', ['$compile', function ($compile) {
     }
     return obj;
 }]);
+app.directive('chosen', [function () {
+    var obj = {};
+    obj.restrict = 'C',
+    obj.link = function (scope, element, attribute) {
+        $(element).chosen();
+    }
+    return obj;
+}])
 app.factory("token", [function () {
     var obj = {};
     obj.gettoken = function () {

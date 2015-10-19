@@ -1,6 +1,7 @@
 using DependencyHandler;
 using SchoolService;
 using SchoolService.WCFServices;
+using SchoolService.WCFServices.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace SchoolWeb
                constraints: new { isMatch = new DefaultConstraint() }
            );
             routes.Add(new ServiceRoute("SVC/MaterService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(MasterService)));
-            routes.Add(new ServiceRoute("SVC/StudentService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(MasterService)));
-            routes.Add(new ServiceRoute("SVC/TeacherService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(MasterService)));
-            routes.Add(new ServiceRoute("SVC/LoginService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(MasterService)));
+            routes.Add(new ServiceRoute("SVC/StudentService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(LoginService)));
+            routes.Add(new ServiceRoute("SVC/TeacherService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(TeacherService)));
+            routes.Add(new ServiceRoute("SVC/LoginService", new SimpleInjectorWebServiceHostFactory(SingletonContainer.Instance), typeof(StudentService)));
 
 
         }

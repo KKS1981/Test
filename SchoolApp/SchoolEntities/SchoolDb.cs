@@ -62,8 +62,7 @@ namespace SchoolEntities
             });
             modelBuilder.Entity<Class>().HasRequired(x => x.ClassLabel).WithMany(x => x.Classes).HasForeignKey(
                 x => x.ClassLabel_Id);
-            modelBuilder.Entity<Class>().HasRequired(x => x.SectionLabel).WithMany(x => x.Classes).HasForeignKey(
-                x => x.SectionLabel_Id);
+           
             modelBuilder.Entity<ClassTeacher>().HasRequired(x => x.Teacher).WithMany(x => x.ClassTeachers).
                 HasForeignKey(x => x.TeacherMaster_Id);
             modelBuilder.Entity<ExamResult>().HasRequired(x => x.Student).WithMany(x => x.ExamResults).HasForeignKey(
@@ -198,7 +197,7 @@ namespace SchoolEntities
         public DbSet<AcademicTerm> AcademicTerms { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<ClassLabel> ClassLabels { get; set; }
-        public DbSet<SectionLabel> SectionLabels { get; set; }
+        
         public DbSet<Class> Classes { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Activity> Activities { get; set; }

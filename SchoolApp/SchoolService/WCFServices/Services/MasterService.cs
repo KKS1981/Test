@@ -49,25 +49,6 @@ namespace SchoolService.WCFServices
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
-        public void CreateSection(CreateSectionModel model)
-        {
-            _masterHelper.CreateSection(model);
-        }
-
-        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
-        public void EditSection(EditSectionModel model)
-        {
-            _masterHelper.EditSection(model);
-        }
-
-        [PrincipalPermission(SecurityAction.Demand)]
-        public List<SectionModel> GetSections()
-        {
-            return _masterHelper.GetSections();
-
-        }
-
-        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
         public void CreateClassLabel(CreateClassLabel model)
         {
             _masterHelper.CreateClassLable(model);
@@ -94,13 +75,19 @@ namespace SchoolService.WCFServices
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
         public EditClass EditClass(EditClass model)
         {
-           return _masterHelper.EditClass(model);
+            return _masterHelper.EditClass(model);
         }
 
         [PrincipalPermission(SecurityAction.Demand)]
         public List<ClassListModel> GetClasses()
         {
             return _masterHelper.GetClasses();
+        }
+
+
+        public List<ClassesViewModel> GetClassList()
+        {
+           return _masterHelper.GetClassList();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Model
     public class CreateClass
     {
         [DataMember(IsRequired = true)]
-        public int SectionLabelId { get; set; }
+        public string Section { get; set; }
 
         [DataMember(IsRequired = true)]
         public int ClassLabelId { get; set; }
@@ -27,7 +27,7 @@ namespace Model
         public int ClassId { get; set; }
 
         [DataMember(IsRequired = true)]
-        public int SectionLabelId { get; set; }
+        public string Section { get; set; }
 
         [DataMember(IsRequired = true)]
         public int ClassLabelId { get; set; }
@@ -44,5 +44,20 @@ namespace Model
 
         [DataMember(IsRequired = true)]
         public string Name { get; set; }
+    }
+
+    [DataContract]
+    public class ClassesViewModel
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Label { get; set; }
+        [DataMember]
+        public string ClassLablel { get; set; }
+        [DataMember]
+        public int NumericCode { get; set; }
+
+        public string ClassTeacher { get; set; }
     }
 }

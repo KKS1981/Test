@@ -35,9 +35,10 @@ namespace Domain.School {
         public string Term1Path { get; set; }
         public string Term2Path { get; set; }
         public string Orientation { get; set; }
-        [ForeignKey("SectionLabel")]
-        public int SectionLabel_Id { get; set; }
-        public virtual SectionLabel SectionLabel { get; set; }
+
+        [Required]
+        public string Section { get; set; }
+       
         [ForeignKey("ClassLabel")]
         public int ClassLabel_Id { get; set; }
         public virtual ClassLabel ClassLabel { get; set; }

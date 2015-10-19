@@ -15,7 +15,6 @@ app.config(['$urlRouterProvider', '$stateProvider', '$controllerProvider', funct
     }
     app.controllerProvider = $controllerProvider;
     urp.otherwise('/');
-    sp.state('classes', { url: '/classes', templateUrl: '/templates/master/classes.html' });
     sp.state('academicyears', {
         url: '/academicyears',
         templateUrl: '/templates/master/academicyears.html',
@@ -26,5 +25,8 @@ app.config(['$urlRouterProvider', '$stateProvider', '$controllerProvider', funct
     sp.state('createyear', { url: '/createyear', templateUrl: '/templates/master/createyear.html', controller: 'acedmicYearController', resolve: route(['/javascripts/controllers/masters/acedmicyearcontrooler.js']) });
     sp.state('home', { url: '/', templateUrl: '/templates/master/home.html' });
     sp.state('error', { url: '/error', templateUrl: '/templates/error.html' });
+    sp.state('classes', { url: '/classes', templateUrl: '/templates/master/classes.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
+    sp.state("createclass", { url: '/createclass', templateUrl: '/templates/master/CreateClass.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
+    sp.state('createclasslabel', { url: '/createclasslabel', templateUrl: '/templates/master/CreateClassLabel.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
 
 }]);

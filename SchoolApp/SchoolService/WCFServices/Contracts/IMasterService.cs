@@ -8,7 +8,7 @@ namespace SchoolService.WCFServices
     [ServiceContract]
     public interface IMasterService
     {
-        [OperationContract]         
+        [OperationContract]
         Model.AcademicYearModel CreateAccedmiYear(int startYear);
         [OperationContract]
         [WebGet]
@@ -18,16 +18,6 @@ namespace SchoolService.WCFServices
         Model.AcademicYearModel GetCurrentAcademicYear();
         [OperationContract]
         void SetCurrentAcademicYear(int id);
-
-        [OperationContract]
-        void CreateSection(CreateSectionModel model);
-
-        [OperationContract]
-        void EditSection(EditSectionModel model);
-
-        [OperationContract]
-        [WebGet]
-        List<SectionModel> GetSections();
 
         [OperationContract]
         void CreateClassLabel(CreateClassLabel model);
@@ -49,7 +39,11 @@ namespace SchoolService.WCFServices
         [WebGet]
         List<ClassListModel> GetClasses();
 
+        [OperationContract]
+        [WebGet]
+        List<ClassesViewModel> GetClassList();
 
-        
+
+
     }
 }

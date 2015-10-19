@@ -1,0 +1,19 @@
+﻿<form ng-submit="createClass()" role="form">
+    <div class="form-group">
+        <label for="ClassLabelId">Class Label</label>
+        <select name="ClassLabelId" ng-model="ClassLabelId" ng-options="item.Id as item.Name for item in Classes" class="chosen"></select>
+        <a class="btn btn-primary" ui-sref="createclasslabel">Add Class Label</a>
+        <p>{{ClassLabelId}}</p>
+    </div>
+    <div class="form-group">
+        <label for="Section" ng-model="Section">Section</label>
+        <input type="text" ng-model="Section" name="Section" />
+    </div>
+    <div class="form-group">
+        <label for="TeacherId">Teacher</label>
+        <select name="TeacherId" ng-model="TeacherId" ng-options="item.ID as item.Name for item in Teachers"></select>
+        <a class="btn btn-primary">Add Teacher</a>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary" />
+
+</form>

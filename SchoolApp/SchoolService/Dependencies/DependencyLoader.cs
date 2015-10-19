@@ -27,7 +27,7 @@ namespace SchoolService.Dependencies
             container.Register<IRepository<StudentMaster>, SqlRepository<StudentMaster>>();
             container.Register<IRepository<AcademicTerm>, SqlRepository<AcademicTerm>>();
             container.Register<IRepository<ClassLabel>, SqlRepository<ClassLabel>>();
-            container.Register<IRepository<SectionLabel>, SqlRepository<SectionLabel>>();
+            
             container.Register<IRepository<Class>, SqlRepository<Class>>();
             container.Register<IRepository<Subject>, SqlRepository<Subject>>();
             container.Register<IRepository<Activity>, SqlRepository<Activity>>();

@@ -15,7 +15,7 @@ namespace Repository {
         IRepository<AcademicTerm> AcademicTerms { get; }
         IStudentRepository Students { get; }
         IRepository<ClassLabel> ClassLabels { get; }
-        IRepository<SectionLabel> SectionLabels { get; }
+        
         IRepository<Class> Classes { get; }
         IRepository<Subject> Subjects { get; }
         IRepository<Activity> Activities { get; }

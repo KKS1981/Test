@@ -11,7 +11,7 @@ namespace Repository
         public SqlUnitOfWork(IRepository<StudentMaster> studentMasters,
                              IAcademicYearRepository academicYears, IRepository<AcademicTerm> academicTerms,
                              IStudentRepository students, IRepository<ClassLabel> classLabels,
-                             IRepository<SectionLabel> sectionLabels, IRepository<Class> classes,
+                             IRepository<Class> classes,
                              IRepository<Subject> subjects, IRepository<Activity> activities,
                              IRepository<DescriptiveIndicator> descriptiveIndicators, IRepository<Exam> exams,
                              IRepository<AssessmentSchema> assessmentSchemas, IRepository<ExamResult> examResults,
@@ -36,7 +36,7 @@ namespace Repository
             AcademicTerms = academicTerms;
             Students = students;
             ClassLabels = classLabels;
-            SectionLabels = sectionLabels;
+            
             Classes = classes;
             Subjects = subjects;
             Activities = activities;
@@ -84,7 +84,7 @@ namespace Repository
 
         public IRepository<ClassLabel> ClassLabels { get; private set; }
 
-        public IRepository<SectionLabel> SectionLabels { get; private set; }
+       
 
         public IRepository<Class> Classes { get; private set; }
 

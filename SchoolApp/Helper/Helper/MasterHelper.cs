@@ -57,42 +57,15 @@ namespace Helper.Helper
             }
             var year = _uow.AcademicYears.FindById(id);
             year.IsCurrent = true;
-            
+
             _uow.AcademicYears.SaveChanges();
 
         }
 
 
 
-        public void CreateSection(CreateSectionModel model)
-        {
-            var section = _uow.SectionLabels.Single(x => x.Name == model.Name);
-            if (section == null)
-            {
-                section = new SectionLabel();
-                section.Name = model.Name;
-                _uow.SectionLabels.Add(section);
-                _uow.SectionLabels.SaveChanges();
-            }
-            else
-                throw new Exception("Section Already Exist");
-        }
 
-        public void EditSection(EditSectionModel model)
-        {
-            var section = _uow.SectionLabels.Single(x => x.Id == model.Id);
-            if (section == null)
-            {
-                throw new Exception("Section not Found");
-            }
-            section.Name = model.Name;
-            _uow.SectionLabels.SaveChanges();
-        }
 
-        public List<SectionModel> GetSections()
-        {
-            return _uow.SectionLabels.Fetch().Select(x => new SectionModel { Id = x.Id, Name = x.Name }).ToList();
-        }
 
         public void CreateClassLable(CreateClassLabel model)
         {
@@ -108,7 +81,7 @@ namespace Helper.Helper
                 throw new Exception("Class Label Not Exist");
             }
             classLabel.NumericCode = model.NumericCode;
-            classLabel.RomanName = model.RomanName;
+            classLabel.RomanName = model.Name;
             _uow.ClassLabels.SaveChanges();
             return model;
         }
@@ -121,9 +94,9 @@ namespace Helper.Helper
         public void CreateClass(CreateClass model)
         {
             var classLable = _uow.ClassLabels.FindById(model.ClassLabelId);
-            var sectionLabel = _uow.SectionLabels.FindById(model.SectionLabelId);
-            var label = string.Format("{0}-{1}", classLable.RomanName, sectionLabel.Name);
-            var @class = new Class { ClassLabel_Id = model.ClassLabelId, SectionLabel_Id = model.SectionLabelId, Label = label };
+
+            var label = string.Format("{0}-{1}", classLable.RomanName, model.Section);
+            var @class = new Class { ClassLabel_Id = model.ClassLabelId, Label = label, Section = model.Section };
             @class.ClassTeacher = new ClassTeacher { TeacherMaster_Id = model.TeacherId };
             _uow.Classes.Add(@class);
             _uow.Classes.SaveChanges();
@@ -137,11 +110,11 @@ namespace Helper.Helper
                 throw new Exception("Class Not Exist");
             }
             var classLable = _uow.ClassLabels.FindById(model.ClassLabelId);
-            var sectionLabel = _uow.SectionLabels.FindById(model.SectionLabelId);
-            var label = string.Format("{0}-{1}", classLable.RomanName, sectionLabel.Name);
+
+            var label = string.Format("{0}-{1}", classLable.RomanName, model.Section);
             @class.Label = label;
             @class.ClassLabel_Id = model.ClassLabelId;
-            @class.SectionLabel_Id = model.SectionLabelId;
+            @class.Section = model.Section;
             @class.ClassTeacher.TeacherMaster_Id = model.TeacherId;
             _uow.Classes.SaveChanges();
             return model;
@@ -151,6 +124,12 @@ namespace Helper.Helper
         {
             var classes = _uow.Classes.Fetch().ToList();
             return classes.Select(x => new ClassListModel { Id = x.Id, Name = x.Label }).ToList();
+        }
+
+        public List<ClassesViewModel> GetClassList()
+        {
+            var classes = _uow.Classes.Fetch().ToList();
+            return classes.Select(x => ObjectMapper.MapToClassesViewModel(x)).ToList();
         }
     }
 }
