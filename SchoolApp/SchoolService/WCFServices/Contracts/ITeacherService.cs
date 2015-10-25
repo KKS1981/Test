@@ -17,6 +17,10 @@ namespace SchoolService.WCFServices.Services
         [OperationContract]
         [WebGet]
         List<TeacherListModel> TeacherList();
+
+        [OperationContract]
+        [WebGet]
+        List<TeacherViewModel> TeacherViewList();
         
     }
 }

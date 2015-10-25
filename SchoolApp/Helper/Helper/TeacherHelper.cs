@@ -45,5 +45,12 @@ namespace Helper.Helper
             var teachers = _uow.Teachers.Fetch().ToList();
             return teachers.Select(x => new TeacherListModel { ID = x.Id, Name = x.FullName }).ToList();
         }
+
+        public List<TeacherViewModel> GetTeacherViewList()
+        {
+            var teachers = _uow.Teachers.Fetch().ToList();
+            return teachers.Select(x => ObjectMapper.MapToTeacherViewModel(x)).ToList();
+
+        }
     }
 }

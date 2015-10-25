@@ -25,14 +25,14 @@ app.directive('chosen', [function () {
     obj.restrict = 'C',
     obj.link = function (scope, element, attribute) {
 
-        scope.$watch(attribute.watch, function (value1,value2) {
+        scope.$watch(attribute.watch, function (value1, value2) {
             $(element).chosen({ width: "100%" });
-            
+
             $(element).trigger('chosen:updated');
         });
 
         scope.$watch(attribute.ngModel, function (value1, value2) {
-           
+
             $(element).trigger('chosen:updated');
         });
 
@@ -96,5 +96,15 @@ app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token,
     return obj;
 
 }]);
+function toDateString(date) {
+    var a=new Date(eval(
+date.match(/\/(.*)\//).pop()))
+    var day = a.getDay();
+    var month = a.getMonth();
+    var year = a.getFullYear();
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nev', 'Dec'];
+    var string = day + " " + months[month] + " " + year;
+    return string;
+}
 
 

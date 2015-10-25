@@ -258,6 +258,35 @@ namespace Helper
             model.TeacherId = @class.ClassTeacher.TeacherMaster_Id;
             return model;
         }
+
+        internal static TeacherViewModel MapToTeacherViewModel(Teacher teacher)
+        {
+            var model = new TeacherViewModel();
+            model.Dob = teacher.DOB;
+            model.FullName = string.Format("{0} {1}", teacher.FirstName, teacher.LastName);
+            model.Address = teacher.StreetAddress;
+            model.Gender = ToGender(teacher.Gender);
+            model.Id = teacher.Id;
+            model.MobileNumber = teacher.MobileNo;
+            model.PhoneNumber = teacher.PhoneNo;
+            model.ImagePath = teacher.ImagePath;
+
+            return model;
+        }
+
+        internal static string ToGender(bool? value)
+        {
+            if (value.HasValue)
+            {
+                if (value.Value)
+                    return "male";
+                else
+                    return "female";
+            }
+            else
+                return "";
+
+        }
     }
 
 }

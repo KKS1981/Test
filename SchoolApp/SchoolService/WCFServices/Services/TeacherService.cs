@@ -25,7 +25,7 @@ namespace SchoolService.WCFServices.Services
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
         public void CreateTeacher(CreateTeacher model)
         {
-            
+
             _teacherHelper.CreateTeacher(model);
         }
 
@@ -35,10 +35,16 @@ namespace SchoolService.WCFServices.Services
             return _teacherHelper.EditTeacher(model);
         }
 
-         [PrincipalPermission(SecurityAction.Demand)]
+        [PrincipalPermission(SecurityAction.Demand)]
         public List<TeacherListModel> TeacherList()
         {
             return _teacherHelper.GetTeacherList();
+        }
+
+        [PrincipalPermission(SecurityAction.Demand)]
+        public List<TeacherViewModel> TeacherViewList()
+        {
+            return _teacherHelper.GetTeacherViewList();
         }
     }
 }

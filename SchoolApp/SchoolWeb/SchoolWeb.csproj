@@ -252,8 +252,10 @@
     <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="images\default-avatar.v9899025.gif" />
     <Content Include="javascripts\controllers\masters\acedmicyearcontrooler.js" />
     <Content Include="javascripts\controllers\masters\classcontroller.js" />
+    <Content Include="javascripts\controllers\masters\teachercontroller.js" />
     <Content Include="javascripts\require.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />

@@ -11,7 +11,7 @@
       <mvcSiteMapNode title="Class Label" url="#3"/>
       <mvcSiteMapNode title="Class" url="#4" sref="classes"/>
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="Teacher" url="#5"/>
+    <mvcSiteMapNode title="Teacher" url="#5" sref="teachers"/>
     <mvcSiteMapNode title="Student" url="#6"/>
   </mvcSiteMapNode>
 

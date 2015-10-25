@@ -142,10 +142,10 @@ namespace Model
         public int Id { get; set; }
 
         [DataMember]
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
 
         [DataMember]
-        public string LastName { get; set; }
+        public string Address { get; set; }
 
         [DataMember]
         public string PhoneNumber { get; set; }
@@ -158,5 +158,7 @@ namespace Model
 
         [DataMember]
         public DateTime Dob { get; set; }
+        [DataMember]
+        public string ImagePath { get; set; }
     }
 }
