@@ -43,6 +43,10 @@ namespace SchoolService.WCFServices
         [WebGet]
         List<ClassesViewModel> GetClassList();
 
+        [OperationContract]
+        [WebGet]
+        EditClass GetClass(int id);
+
 
 
     }

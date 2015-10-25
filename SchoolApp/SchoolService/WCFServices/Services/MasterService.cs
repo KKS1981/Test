@@ -84,10 +84,16 @@ namespace SchoolService.WCFServices
             return _masterHelper.GetClasses();
         }
 
-
+        [PrincipalPermission(SecurityAction.Demand)]
         public List<ClassesViewModel> GetClassList()
         {
            return _masterHelper.GetClassList();
+        }
+
+        [PrincipalPermission(SecurityAction.Demand)]
+        public EditClass GetClass(int id)
+        {
+             return _masterHelper.GetClass(id);
         }
     }
 }

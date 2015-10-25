@@ -31,6 +31,11 @@ app.directive('chosen', [function () {
             $(element).trigger('chosen:updated');
         });
 
+        scope.$watch(attribute.ngModel, function (value1, value2) {
+           
+            $(element).trigger('chosen:updated');
+        });
+
     }
     return obj;
 }])

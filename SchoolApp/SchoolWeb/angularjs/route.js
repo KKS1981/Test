@@ -27,6 +27,8 @@ app.config(['$urlRouterProvider', '$stateProvider', '$controllerProvider', funct
     sp.state('error', { url: '/error', templateUrl: '/templates/error.html' });
     sp.state('classes', { url: '/classes', templateUrl: '/templates/master/classes.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
     sp.state("createclass", { url: '/createclass', templateUrl: '/templates/master/CreateClass.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
+    sp.state("editclass", { url: '/editclass/{id:int}', templateUrl: '/templates/master/EditClass.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
+
     sp.state('createclasslabel', { url: '/createclasslabel', templateUrl: '/templates/master/CreateClassLabel.html', controller: 'classController', resolve: route(['/javascripts/controllers/masters/classcontroller.js']) });
 
 }]);

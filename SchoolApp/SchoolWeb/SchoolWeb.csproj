@@ -216,6 +216,7 @@
     <Content Include="dist\css\skins\skin-yellow.min.css" />
     <Content Include="dist\css\skins\_all-skins.css" />
     <Content Include="dist\css\skins\_all-skins.min.css" />
+    <Content Include="dist\css\style.css" />
     <Content Include="dist\img\avatar.png" />
     <Content Include="dist\img\avatar04.png" />
     <Content Include="dist\img\avatar2.png" />
@@ -939,8 +940,10 @@
     <Content Include="templates\master\CreateClass.html" />
     <Content Include="templates\master\CreateClassLabel.html" />
     <Content Include="templates\master\createyear.html" />
+    <Content Include="templates\master\EditClass.html" />
     <Content Include="templates\master\EditClassLabel.html" />
     <Content Include="templates\master\home.html" />
+    <Content Include="templates\master\teachers.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

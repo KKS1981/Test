@@ -248,6 +248,16 @@ namespace Helper
             model.NumericCode = @class.ClassLabel.NumericCode;
             return model;
         }
+
+        internal static EditClass MapToEditClassModel(Class @class)
+        {
+            var model = new EditClass { };
+            model.ClassId = @class.Id;
+            model.ClassLabelId = @class.ClassLabel_Id;
+            model.Section = @class.Section;
+            model.TeacherId = @class.ClassTeacher.TeacherMaster_Id;
+            return model;
+        }
     }
 
 }

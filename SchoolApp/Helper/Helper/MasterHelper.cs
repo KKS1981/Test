@@ -143,5 +143,11 @@ namespace Helper.Helper
             var classes = _uow.Classes.Fetch(x=>x.ClassTeacher.Teacher).ToList();
             return classes.Select(x => ObjectMapper.MapToClassesViewModel(x)).ToList();
         }
+
+        public Model.EditClass GetClass(int id)
+        {
+            var @class = _uow.Classes.FindById(id,x=>x.ClassTeacher);
+            return ObjectMapper.MapToEditClassModel(@class);
+        }
     }
 }
