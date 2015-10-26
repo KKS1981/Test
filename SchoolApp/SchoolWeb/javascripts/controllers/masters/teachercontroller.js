@@ -1,9 +1,13 @@
-﻿var app = angular.module(appname);
+var app = angular.module(appname);
 app.controllerProvider.register('teacherController', ['$scope', '$compile', '$state', '$stateParams', 'ajax', function ($scope, $compile, $state, $stateParams, ajax) {
     if ($state.$current.name == "teachers") {
         ajax('/SVC/TeacherService/TeacherViewList', {}, { method: 'GET', isArray: true, headers: { Accept: 'application/json' } }, null, function (data) {
             $scope.teachers = data
         });
+    }
+    if ($state.$current.name == "createteacher") {
+        $scope.info = "basic";
+        $scope.heading = "Basic Information";
     }
 }
 ]
@@ -13,15 +17,7 @@ function teachertable(scope, element, attribute) {
     if (a.hasClass("dataTable")) {
         $(element).dataTable().fnDestroy();
     }
-    a.DataTable({
-        //"aoColumns": [
-        //      { "bSortable": false },
-        //      null,
-        //      null,
-        //      null,
-        //      null,
-        //      { "bSortable": false }
-        //],
+    a.DataTable({      
         data: scope[attribute.data],
         columns: [
             { data: 'ImagePath' },
