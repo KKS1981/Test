@@ -9,6 +9,14 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.info = "basic";
         $scope.heading = "Basic Information";
     }
+    $scope.address = function () {
+        $scope.info = "address";
+        $scope.heading = "Address Information";
+    }
+    $scope.basic = function () {
+        $scope.info = "basic";
+        $scope.heading = "Basic Information";
+    }
 }
 ]
 )
@@ -17,7 +25,7 @@ function teachertable(scope, element, attribute) {
     if (a.hasClass("dataTable")) {
         $(element).dataTable().fnDestroy();
     }
-    a.DataTable({      
+    a.DataTable({
         data: scope[attribute.data],
         columns: [
             { data: 'ImagePath' },

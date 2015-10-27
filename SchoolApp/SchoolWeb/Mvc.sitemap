@@ -7,8 +7,7 @@
     <mvcSiteMapNode title="About" controller="Home" action="About"/>
     <mvcSiteMapNode title="Master" clickable="false">
       <mvcSiteMapNode title="Academic Year" url="#1" sref="academicyears"/>
-      <mvcSiteMapNode title="Section" url="#2"/>
-      <mvcSiteMapNode title="Class Label" url="#3"/>
+      
       <mvcSiteMapNode title="Class" url="#4" sref="classes"/>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Teacher" url="#5" sref="teachers"/>
