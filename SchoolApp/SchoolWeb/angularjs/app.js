@@ -1,5 +1,5 @@
 var appname = 'schoolApp';
-var app = angular.module(appname, ['ui.router', 'ngResource']);
+var app = angular.module(appname, ['ui.router', 'ngResource', 'ngMessages']);
 app.directive('datatable', ['$compile', function ($compile) {
     var obj = {};
     obj.restrict = 'A';
@@ -39,6 +39,7 @@ app.directive('chosen', [function () {
     }
     return obj;
 }])
+
 app.factory("token", [function () {
     var obj = {};
     obj.gettoken = function () {
@@ -58,6 +59,7 @@ app.factory("token", [function () {
     return obj;
 }
 ]);
+
 
 app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token, $state) {
     var obj = function (url, paramDefaults, info, data, success, fail) {
@@ -97,7 +99,7 @@ app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token,
 
 }]);
 function toDateString(date) {
-    var a=new Date(eval(
+    var a = new Date(eval(
 date.match(/\/(.*)\//).pop()))
     var day = a.getDay();
     var month = a.getMonth();
@@ -106,5 +108,7 @@ date.match(/\/(.*)\//).pop()))
     var string = day + " " + months[month] + " " + year;
     return string;
 }
+
+
 
 

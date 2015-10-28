@@ -177,6 +177,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angularjs\angular-messages.min.js" />
     <Content Include="angularjs\angular-resource.min.js" />
     <Content Include="angularjs\angular-ui-router.min.js" />
     <Content Include="angularjs\angular.min.js" />

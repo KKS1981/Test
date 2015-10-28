@@ -10,12 +10,21 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.heading = "Basic Information";
     }
     $scope.address = function () {
-        $scope.info = "address";
-        $scope.heading = "Address Information";
+        $scope.basicsubmitted = true;
+        if ($scope.teacherform.$valid) {
+            $scope.info = "address";
+            $scope.heading = "Address Information";
+        }
     }
     $scope.basic = function () {
         $scope.info = "basic";
         $scope.heading = "Basic Information";
+    }
+    $scope.isinvalid = function (data) {
+        if ($scope.basicsubmitted == undefined && !data.$dirty) {
+            return false;
+        }
+        return data.$invalid && (data.$dirty || $scope.basicsubmitted);
     }
 }
 ]

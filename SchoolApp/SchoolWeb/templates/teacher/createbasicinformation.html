@@ -1,9 +1,13 @@
-﻿<div class="form-group">
+﻿<div class="form-group" ng-class="isinvalid(teacherform.UserName)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="UserName">User Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="UserName" class="form-control" />
+        <input type="text" ng-model="UserName" class="form-control" name="UserName" required />
+        <div class="help-block" ng-messages="teacherform.UserName.$error">
+            <div ng-message="required">UserName is Required</div>
+        </div>
+
     </div>
 
 </div>
@@ -12,7 +16,7 @@
         <label for="Email">Email</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Email" class="form-control" />
+        <input type="text" ng-model="Email" class="form-control" required />
     </div>
 
 </div>
@@ -21,7 +25,7 @@
         <label for="Password">Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="Password" class="form-control" />
+        <input type="password" ng-model="Password" class="form-control" required />
     </div>
 
 </div>
@@ -30,7 +34,7 @@
         <label for="ConfirmPassword">Confirm Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="ConfirmPassword" class="form-control" />
+        <input type="password" ng-model="ConfirmPassword" class="form-control" required />
     </div>
 
 </div>
@@ -39,7 +43,7 @@
         <label for="FirstName">First Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FirstName" class="form-control" />
+        <input type="text" ng-model="FirstName" class="form-control" required />
     </div>
 
 </div>
@@ -48,7 +52,7 @@
         <label for="LastName">Last Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="LastName" class="form-control" />
+        <input type="text" ng-model="LastName" class="form-control" required />
     </div>
 
 </div>
@@ -57,7 +61,7 @@
         <label for="MotherName">Mother Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="MotherName" class="form-control" />
+        <input type="text" ng-model="MotherName" class="form-control" required />
     </div>
 
 </div>
@@ -66,7 +70,7 @@
         <label for="FatherName">Father Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FatherName" class="form-control" />
+        <input type="text" ng-model="FatherName" class="form-control" required />
     </div>
 
 </div>
@@ -75,7 +79,7 @@
         <label for="Dob">Date Of Birth</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Dob" class="form-control" />
+        <input type="text" ng-model="Dob" class="form-control" required />
     </div>
 
 </div>
@@ -102,7 +106,7 @@
         <label for="MobileNumber">Mobile Number</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="MobileNumber" class="form-control" />
+        <input type="text" ng-model="MobileNumber" class="form-control" required />
     </div>
 
 </div>
