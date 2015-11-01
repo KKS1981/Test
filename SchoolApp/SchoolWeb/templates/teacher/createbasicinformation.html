@@ -3,87 +3,117 @@
         <label for="UserName">User Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="UserName" class="form-control" name="UserName" required />
-        <div class="help-block" ng-messages="teacherform.UserName.$error">
-            <div ng-message="required">UserName is Required</div>
+        <input type="text" ng-model="UserName" class="form-control" name="UserName" remoteurl="/SVC/LoginService/IsUserNameAvailiable"  required remote />
+        <div class="help-block" ng-messages="teacherform.UserName.$error" ng-show="isinvalid(teacherform.UserName)?'has-error':''">
+            <div ng-message="required">User Name is Required</div>
+            <div ng-message="remote">User Name not Availiable</div>
         </div>
 
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.Email)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Email">Email</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Email" class="form-control" required />
+        <input type="text" ng-model="Email" class="form-control" name="Email" remoteurl="/SVC/LoginService/IsEmailAvailiable" required remote />
+        <div class="help-block" ng-messages="teacherform.Email.$error" ng-show="isinvalid(teacherform.Email)?'has-error':''">
+            <div ng-message="required">Email is Required</div>
+            <div ng-message="remote">Email not Availiable</div>
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<!--<div class="form-group" ng-class="isinvalid(teacherform.Password)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Password">Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="Password" class="form-control" required />
+        <input type="password" ng-model="Password" class="form-control" name="Password" required />
+        <div class="help-block" ng-messages="teacherform.Password.$error" ng-show="isinvalid(teacherform.Password)?'has-error':''">
+            <div ng-message="required">Password is Required</div>
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.ConfirmPassword)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="ConfirmPassword">Confirm Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="ConfirmPassword" class="form-control" required />
+        <input type="password" ng-model="ConfirmPassword" class="form-control" name="ConfirmPassword" compare="Password" required />
+        <div class="help-block" ng-messages="teacherform.ConfirmPassword.$error" ng-show="isinvalid(teacherform.ConfirmPassword)?'has-error':''">
+            <div ng-message="required">Password is Required</div>
+            <div ng-message="compare">Confirm Password should equal to Password </div>
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.FirstName)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="FirstName">First Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FirstName" class="form-control" required />
+        <input type="text" ng-model="FirstName" class="form-control" name="FirstName" required />
+        <div class="help-block" ng-messages="teacherform.FirstName.$error" ng-show="isinvalid(teacherform.FirstName)?'has-error':''">
+            <div ng-message="required">First Name is Required</div>
+
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.LastName)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="LastName">Last Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="LastName" class="form-control" required />
+        <input type="text" ng-model="LastName" class="form-control" name="LastName" required />
+        <div class="help-block" ng-messages="teacherform.LastName.$error" ng-show="isinvalid(teacherform.LastName)?'has-error':''">
+            <div ng-message="required">Last Name is Required</div>
+
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.MotherName)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="MotherName">Mother Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="MotherName" class="form-control" required />
+        <input type="text" ng-model="MotherName" class="form-control" name="MotherName" required />
+        <div class="help-block" ng-messages="teacherform.MotherName.$error" ng-show="isinvalid(teacherform.MotherName)?'has-error':''">
+            <div ng-message="required">Mother Name is Required</div>
+
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.FatherName)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="FatherName">Father Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FatherName" class="form-control" required />
+        <input type="text" ng-model="FatherName" class="form-control" name="FatherName" required />
+        <div class="help-block" ng-messages="teacherform.FatherName.$error" ng-show="isinvalid(teacherform.FatherName)?'has-error':''">
+            <div ng-message="required">Father Name is Required</div>
+        </div>
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.Dob)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Dob">Date Of Birth</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Dob" class="form-control" required />
+        <input type="text" ng-model="Dob" class="form-control" name="Dob" required />
+        <div class="help-block" ng-messages="teacherform.Dob.$error" ng-show="isinvalid(teacherform.Dob)?'has-error':''">
+            <div ng-message="required">Birth Date is Required</div>
+        </div>
     </div>
 
 </div>
-<divm class="form-group">
+<div class="form-group">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Doj">Date Of Join</label>
     </div>
@@ -91,13 +121,16 @@
         <input type="text" ng-model="Doj" class="form-control" />
     </div>
 
-</divm>
-<div class="form-group">
+</div>
+<div class="form-group" ng-class="isinvalid(teacherform.PhoneNumber)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="PhoneNumber">Phone Number</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="PhoneNumber" class="form-control" />
+        <input type="text" ng-model="PhoneNumber" name="PhoneNumber" class="form-control" required />
+        <div class="help-block" ng-messages="teacherform.PhoneNumber.$error" ng-show="isinvalid(teacherform.PhoneNumber)?'has-error':''">
+            <div ng-message="required">PhoneNumber is Required</div>
+        </div>
     </div>
 
 </div>
@@ -122,12 +155,15 @@
     </div>
 
 </div>
-<div class="form-group">
+<div class="form-group" ng-class="isinvalid(teacherform.Nationality)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Nationality">Nationality</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Nationality" class="form-control" />
+        <input type="text" ng-model="Nationality" name="Nationality" class="form-control" required />
+        <div class="help-block" ng-messages="teacherform.Nationality.$error" ng-show="isinvalid(teacherform.Nationality)?'has-error':''">
+            <div ng-message="required">Nationality is Required</div>
+        </div>
     </div>
 </div>
 <div class="form-group">
@@ -137,7 +173,7 @@
     <div class="col-sm-6">
         <textarea ng-model="Qualification" class="form-control" />
     </div>
-</div>
+</div>-->
 <div class="form-group">
     <div class="col-sm-6 col-xs-6 text-right">
         <a class="btn btn-primary" ui-sref="teachers">Back</a>

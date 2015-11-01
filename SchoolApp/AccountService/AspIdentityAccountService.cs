@@ -117,9 +117,9 @@ namespace AccountService
         }
 
 
-        public string GenerateAuthKeyByUserName(string username, string deviceID="")
+        public string GenerateAuthKeyByUserName(string username, string deviceID = "")
         {
-            var user = _manager.FindByName<ApplicationUser,string>(username);
+            var user = _manager.FindByName<ApplicationUser, string>(username);
             if (user != null)
             {
                 var key = Guid.NewGuid().ToString().Replace("-", "");
@@ -128,6 +128,37 @@ namespace AccountService
                 return key;
             }
             throw new Exception("Invalid username");
+        }
+
+
+        public bool IsUserExist(string userName)
+        {
+            var user = _manager.FindByName(userName);
+            if (user != null)
+                return true;
+            return false;
+        }
+
+
+        public bool IsEmailExist(string email)
+        {
+            var user = _manager.FindByEmail(email);
+            if (user != null)
+                return true;
+            return false;
+        }
+
+
+        public UserModel CreateUser(string userName, string email, string passWord, string role)
+        {
+            var user = new ApplicationUser();
+            user.Email = email;
+            user.UserName = userName;
+            var result = _manager.Create(user, passWord);
+            if (!result.Succeeded)
+                throw new Exception("An Error Occurred to Register User");
+            user = _manager.FindByName(userName);
+            return new UserModel { UserID = user.Id, UserName = user.UserName };
         }
     }
 }

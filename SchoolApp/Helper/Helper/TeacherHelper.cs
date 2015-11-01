@@ -22,7 +22,7 @@ namespace Helper.Helper
         }
         public void CreateTeacher(Model.CreateTeacher model, string Path = null)
         {
-            var user = _aService.CreateUser(model.UserName, model.Password, Roles.Teacher.ToString());
+            var user = _aService.CreateUser(model.UserName, model.Email, model.Password, Roles.Teacher.ToString());
             var teacher = ObjectMapper.MapToTeacher(model);
             teacher.UserId = user.UserID;
             teacher.UserName = user.UserName;
@@ -34,7 +34,7 @@ namespace Helper.Helper
         public Model.EditTeacher EditTeacher(Model.EditTeacher model)
         {
             var teacher = _uow.Teachers.FindById(model.Id);
-            ObjectMapper.MapToTeacher(model,teacher);            
+            ObjectMapper.MapToTeacher(model, teacher);
             _uow.Teachers.SaveChanges();
             return model;
 

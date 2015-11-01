@@ -21,6 +21,7 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.heading = "Basic Information";
     }
     $scope.isinvalid = function (data) {
+        
         if ($scope.basicsubmitted == undefined && !data.$dirty) {
             return false;
         }
@@ -92,3 +93,4 @@ function teachertable(scope, element, attribute) {
     });
 
 }
+

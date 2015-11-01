@@ -39,28 +39,6 @@ app.directive('chosen', [function () {
     }
     return obj;
 }])
-
-app.factory("token", [function () {
-    var obj = {};
-    obj.gettoken = function () {
-        var i, x, y, ARRcookies = document.cookie.split(";");
-        for (i = 0; i < ARRcookies.length; i++) {
-            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
-            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-            x = x.replace(/^\s+|\s+$/g, "");
-            if (x == "key") {
-                return unescape(y);
-            }
-        }
-        if (i == ARRcookies.length) {
-            alert("please sign in again");
-        }
-    };
-    return obj;
-}
-]);
-
-
 app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token, $state) {
     var obj = function (url, paramDefaults, info, data, success, fail) {
         //get token from cokkies
@@ -98,6 +76,88 @@ app.factory('ajax', ['$resource', 'token', '$state', function ($resource, token,
     return obj;
 
 }]);
+app.directive('compare', [function () {
+    var obj = {};
+    obj.require = 'ngModel';
+    obj.restrict = 'A';
+    obj.link = function (scope, elm, attrs, ctrl) {
+        ctrl.$validators.compare = function (modelValue, viewValue) {
+            if (ctrl.$isEmpty(modelValue)) {
+                // consider empty models to be valid
+                return true;
+            }
+
+            if (scope[attrs.compare] == modelValue) {
+                // it is valid
+                return true;
+            }
+
+            // it is invalid
+            return false;
+        };
+    }
+    return obj;
+}]);
+app.factory("token", [function () {
+    var obj = {};
+    obj.gettoken = function () {
+        var i, x, y, ARRcookies = document.cookie.split(";");
+        for (i = 0; i < ARRcookies.length; i++) {
+            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+            x = x.replace(/^\s+|\s+$/g, "");
+            if (x == "key") {
+                return unescape(y);
+            }
+        }
+        if (i == ARRcookies.length) {
+            alert("please sign in again");
+        }
+    };
+    return obj;
+}
+]);
+
+app.directive("remote", ["$q", "$timeout", "ajax", function ($q, $timeout, ajax) {
+    var obj = {};
+    obj.restrict = "A";
+    obj.require = "ngModel";
+    obj.link = function (scope, elm, attrs, ctrl) {
+        ctrl.$asyncValidators.remote = function (modelValue, viewValue) {
+            if (ctrl.$isEmpty(modelValue)) {
+                // consider empty model valid
+                return $q.when();
+            }
+            var def = $q.defer();
+            $timeout(function () {
+                // Mock a delayed response
+                var url = attrs.remoteurl;
+                var _senddata = {}
+                if (!ctrl.$isEmpty(attrs.remotevalues)) {
+                    var values = attrs.remotevalues.split(",")
+
+                    for (var i = 0; i < values.length; i++) {
+                        _senddata[values[i]] = scope[values[i]];
+                    }
+                }               
+                _senddata[attrs["ngModel"]] = modelValue;
+                ajax(url, {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, _senddata, function (data) {
+                    if (data.IsValid) {
+                        def.resolve();
+                    }
+                    else
+                        def.reject();
+                }, function (data) { });
+
+
+            }, 2000);
+
+            return def.promise;
+        }
+    }
+    return obj;
+}]);
+
 function toDateString(date) {
     var a = new Date(eval(
 date.match(/\/(.*)\//).pop()))

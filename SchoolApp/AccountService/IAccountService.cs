@@ -11,11 +11,16 @@ namespace AccountService
 
         UserModel CreateUser(string userName, string passWord);
         UserModel CreateUser(string userName, string passWord, string role);
+        UserModel CreateUser(string userName,string email, string passWord, string role);
 
         UserModel CreateUser(string userName, string passWord, params string[] roles);
 
         bool IsInRole(string[] roles, IIdentity _identity);
 
         string GenerateAuthKeyByUserName(string username, string deviceId = "");
+
+        bool IsUserExist(string userName);
+
+        bool IsEmailExist(string p);
     }
 }

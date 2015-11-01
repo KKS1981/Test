@@ -51,6 +51,9 @@
     <Compile Include="SectionModel.cs" />
     <Compile Include="StudentModel.cs" />
     <Compile Include="TeacherModel.cs" />
+    <Compile Include="validationmodel\EmailValidModel.cs" />
+    <Compile Include="validationmodel\UserNameValidModel.cs" />
+    <Compile Include="ValidModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
