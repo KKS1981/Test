@@ -86,8 +86,9 @@ app.directive('compare', [function () {
                 // consider empty models to be valid
                 return true;
             }
-
-            if (scope[attrs.compare] == modelValue) {
+             
+            var a = $(document.getElementsByName(attrs.compare)).val();
+            if (a == modelValue) {
                 // it is valid
                 return true;
             }
@@ -140,7 +141,7 @@ app.directive("remote", ["$q", "$timeout", "ajax", function ($q, $timeout, ajax)
                         _senddata[values[i]] = scope[values[i]];
                     }
                 }               
-                _senddata[attrs["ngModel"]] = modelValue;
+                _senddata[attrs["name"]] = modelValue;
                 ajax(url, {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, _senddata, function (data) {
                     if (data.IsValid) {
                         def.resolve();

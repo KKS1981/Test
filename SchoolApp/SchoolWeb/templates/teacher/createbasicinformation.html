@@ -3,7 +3,7 @@
         <label for="UserName">User Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="UserName" class="form-control" name="UserName" remoteurl="/SVC/LoginService/IsUserNameAvailiable"  required remote />
+        <input type="text" ng-model="teacher.UserName" class="form-control" name="UserName" remoteurl="/SVC/LoginService/IsUserNameAvailiable" required remote />
         <div class="help-block" ng-messages="teacherform.UserName.$error" ng-show="isinvalid(teacherform.UserName)?'has-error':''">
             <div ng-message="required">User Name is Required</div>
             <div ng-message="remote">User Name not Availiable</div>
@@ -17,7 +17,7 @@
         <label for="Email">Email</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Email" class="form-control" name="Email" remoteurl="/SVC/LoginService/IsEmailAvailiable" required remote />
+        <input type="text" ng-model="teacher.Email" class="form-control" name="Email" remoteurl="/SVC/LoginService/IsEmailAvailiable" required remote />
         <div class="help-block" ng-messages="teacherform.Email.$error" ng-show="isinvalid(teacherform.Email)?'has-error':''">
             <div ng-message="required">Email is Required</div>
             <div ng-message="remote">Email not Availiable</div>
@@ -25,12 +25,12 @@
     </div>
 
 </div>
-<!--<div class="form-group" ng-class="isinvalid(teacherform.Password)?'has-error':''">
+<div class="form-group" ng-class="isinvalid(teacherform.Password)?'has-error':''">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Password">Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="Password" class="form-control" name="Password" required />
+        <input type="password" ng-model="teacher.Password" class="form-control" name="Password" required />
         <div class="help-block" ng-messages="teacherform.Password.$error" ng-show="isinvalid(teacherform.Password)?'has-error':''">
             <div ng-message="required">Password is Required</div>
         </div>
@@ -42,7 +42,7 @@
         <label for="ConfirmPassword">Confirm Password</label>
     </div>
     <div class="col-sm-6">
-        <input type="password" ng-model="ConfirmPassword" class="form-control" name="ConfirmPassword" compare="Password" required />
+        <input type="password" ng-model="teacher.ConfirmPassword" class="form-control" name="ConfirmPassword" compare="Password" required />
         <div class="help-block" ng-messages="teacherform.ConfirmPassword.$error" ng-show="isinvalid(teacherform.ConfirmPassword)?'has-error':''">
             <div ng-message="required">Password is Required</div>
             <div ng-message="compare">Confirm Password should equal to Password </div>
@@ -55,7 +55,7 @@
         <label for="FirstName">First Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FirstName" class="form-control" name="FirstName" required />
+        <input type="text" ng-model="teacher.FirstName" class="form-control" name="FirstName" required />
         <div class="help-block" ng-messages="teacherform.FirstName.$error" ng-show="isinvalid(teacherform.FirstName)?'has-error':''">
             <div ng-message="required">First Name is Required</div>
 
@@ -68,7 +68,7 @@
         <label for="LastName">Last Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="LastName" class="form-control" name="LastName" required />
+        <input type="text" ng-model="teacher.LastName" class="form-control" name="LastName" required />
         <div class="help-block" ng-messages="teacherform.LastName.$error" ng-show="isinvalid(teacherform.LastName)?'has-error':''">
             <div ng-message="required">Last Name is Required</div>
 
@@ -81,7 +81,7 @@
         <label for="MotherName">Mother Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="MotherName" class="form-control" name="MotherName" required />
+        <input type="text" ng-model="teacher.MotherName" class="form-control" name="MotherName" required />
         <div class="help-block" ng-messages="teacherform.MotherName.$error" ng-show="isinvalid(teacherform.MotherName)?'has-error':''">
             <div ng-message="required">Mother Name is Required</div>
 
@@ -94,7 +94,7 @@
         <label for="FatherName">Father Name</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="FatherName" class="form-control" name="FatherName" required />
+        <input type="text" ng-model="teacher.FatherName" class="form-control" name="FatherName" required />
         <div class="help-block" ng-messages="teacherform.FatherName.$error" ng-show="isinvalid(teacherform.FatherName)?'has-error':''">
             <div ng-message="required">Father Name is Required</div>
         </div>
@@ -106,7 +106,7 @@
         <label for="Dob">Date Of Birth</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Dob" class="form-control" name="Dob" required />
+        <input type="text" ng-model="teacher.Dob" class="form-control" name="Dob" required />
         <div class="help-block" ng-messages="teacherform.Dob.$error" ng-show="isinvalid(teacherform.Dob)?'has-error':''">
             <div ng-message="required">Birth Date is Required</div>
         </div>
@@ -118,7 +118,7 @@
         <label for="Doj">Date Of Join</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Doj" class="form-control" />
+        <input type="text" ng-model="teacher.Doj" class="form-control" />
     </div>
 
 </div>
@@ -127,7 +127,7 @@
         <label for="PhoneNumber">Phone Number</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="PhoneNumber" name="PhoneNumber" class="form-control" required />
+        <input type="text" ng-model="teacher.PhoneNumber" name="PhoneNumber" class="form-control" required />
         <div class="help-block" ng-messages="teacherform.PhoneNumber.$error" ng-show="isinvalid(teacherform.PhoneNumber)?'has-error':''">
             <div ng-message="required">PhoneNumber is Required</div>
         </div>
@@ -139,7 +139,7 @@
         <label for="MobileNumber">Mobile Number</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="MobileNumber" class="form-control" required />
+        <input type="text" ng-model="teacher.MobileNumber" class="form-control" required />
     </div>
 
 </div>
@@ -148,7 +148,7 @@
         <label for="Gender">Gender</label>
     </div>
     <div class="col-sm-6">
-        <select type="text" ng-model="Gender" class="form-control chosen">
+        <select type="text" ng-model="teacher.Gender" class="form-control chosen">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
@@ -160,7 +160,7 @@
         <label for="Nationality">Nationality</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="Nationality" name="Nationality" class="form-control" required />
+        <input type="text" ng-model="teacher.Nationality" name="Nationality" class="form-control" required />
         <div class="help-block" ng-messages="teacherform.Nationality.$error" ng-show="isinvalid(teacherform.Nationality)?'has-error':''">
             <div ng-message="required">Nationality is Required</div>
         </div>
@@ -171,9 +171,9 @@
         <label for="Qualification">Qualification</label>
     </div>
     <div class="col-sm-6">
-        <textarea ng-model="Qualification" class="form-control" />
+        <textarea ng-model="teacher.Qualification" class="form-control" />
     </div>
-</div>-->
+</div>
 <div class="form-group">
     <div class="col-sm-6 col-xs-6 text-right">
         <a class="btn btn-primary" ui-sref="teachers">Back</a>

@@ -3,9 +3,9 @@
         <h2>{{heading}}</h2>
     </div>
     <div class="box-body">
-        <form ng-submit="createacher()" role="form" class="form-horizontal" name="teacherform"  novalidate>
-            <div ng-show="info=='basic'" ng-include="'/templates/teacher/createbasicinformation.html'"></div>
-            <div ng-show="info=='address'" ng-include="'/templates/teacher/createcontact.html'"></div>
+        <form ng-submit="createacher()" role="form" class="form-horizontal" name="teacherform" ng-init="teacher={}" novalidate>
+            <div ng-if="info=='basic'" ng-include="'/templates/teacher/createbasicinformation.html'"></div>
+            <div ng-if="info=='address'" ng-include="'/templates/teacher/createcontact.html'"></div>
         </form>
     </div>
 </div>
