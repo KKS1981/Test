@@ -160,12 +160,12 @@ app.directive("remote", ["$q", "$timeout", "ajax", function ($q, $timeout, ajax)
 }]);
 
 
-app.directive('form', function () {
+app.directive('formGroup', [function () {
     return {
-        restrict: 'A',
+        restrict: 'C',
         link: function (scope, element, attribute) {
-            element.find('.form-group').each(function () {
-                var $formGroup = $(this);
+            
+            var $formGroup = $(element);
                 var $inputs = $formGroup.find('input[ng-model],textarea[ng-model],select[ng-model]');
 
                 if ($inputs.length > 0) {
@@ -173,22 +173,52 @@ app.directive('form', function () {
                         var $input = $(this);
                         scope.$watch(function () {
 
-                            if (scope.formsubmitted == undefined && !$input.hasClass('ng-dirty')) {
+                            if ((scope.formsubmitted == undefined || !scope.formsubmitted)&& !$input.hasClass('ng-dirty')) {
                                 return false;
                             }
-                            return data.$invalid && (data.$dirty || $scope.formsubmitted);
-                            return $input.hasClass('ng-invalid') && ;
-
-
+                            return $input.hasClass('ng-invalid') && ($input.hasClass('ng-dirty') || scope.formsubmitted);
+                            
                         }, function (isInvalid) {
                             $formGroup.toggleClass('has-error', isInvalid);
                         });
                     });
                 }
-            });
+            
         }
     };
-});
+}]);
+app.directive('helpBlock', [function () {
+    return {
+        restrict: 'C',
+        link: function (scope, element, attribute) {
+
+            var $formGroup = $(element);
+            var $inputs = $formGroup.siblings('input[ng-model],textarea[ng-model],select[ng-model]');
+
+            if ($inputs.length > 0) {
+                $inputs.each(function () {
+                    var $input = $(this);
+                    scope.$watch(function () {
+
+                        if ((scope.formsubmitted == undefined || !scope.formsubmitted) && !$input.hasClass('ng-dirty')) {
+                            return false;
+                        }
+                        return $input.hasClass('ng-invalid') && ($input.hasClass('ng-dirty') || scope.formsubmitted);
+
+                    }, function (isInvalid) {
+                        if (isInvalid) {
+                            $formGroup.show();
+                        }
+                        else {
+                            $formGroup.hide();
+                        }
+                    });
+                });
+            }
+
+        }
+    };
+}]);
 function toDateString(date) {
     var a = new Date(eval(
 date.match(/\/(.*)\//).pop()))
