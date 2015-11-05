@@ -86,7 +86,7 @@ app.directive('compare', [function () {
                 // consider empty models to be valid
                 return true;
             }
-             
+
             var a = $(document.getElementsByName(attrs.compare)).val();
             if (a == modelValue) {
                 // it is valid
@@ -140,7 +140,7 @@ app.directive("remote", ["$q", "$timeout", "ajax", function ($q, $timeout, ajax)
                     for (var i = 0; i < values.length; i++) {
                         _senddata[values[i]] = scope[values[i]];
                     }
-                }               
+                }
                 _senddata[attrs["name"]] = modelValue;
                 ajax(url, {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, _senddata, function (data) {
                     if (data.IsValid) {
@@ -159,6 +159,36 @@ app.directive("remote", ["$q", "$timeout", "ajax", function ($q, $timeout, ajax)
     return obj;
 }]);
 
+
+app.directive('form', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attribute) {
+            element.find('.form-group').each(function () {
+                var $formGroup = $(this);
+                var $inputs = $formGroup.find('input[ng-model],textarea[ng-model],select[ng-model]');
+
+                if ($inputs.length > 0) {
+                    $inputs.each(function () {
+                        var $input = $(this);
+                        scope.$watch(function () {
+
+                            if (scope.formsubmitted == undefined && !$input.hasClass('ng-dirty')) {
+                                return false;
+                            }
+                            return data.$invalid && (data.$dirty || $scope.formsubmitted);
+                            return $input.hasClass('ng-invalid') && ;
+
+
+                        }, function (isInvalid) {
+                            $formGroup.toggleClass('has-error', isInvalid);
+                        });
+                    });
+                }
+            });
+        }
+    };
+});
 function toDateString(date) {
     var a = new Date(eval(
 date.match(/\/(.*)\//).pop()))
