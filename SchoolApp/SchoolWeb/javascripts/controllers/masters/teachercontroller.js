@@ -14,6 +14,7 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         if ($scope.teacherform.$valid) {
             $scope.info = "address";
             $scope.heading = "Address Information";
+            $scope.basicsubmitted = false;
         }
     }
     $scope.basic = function () {
