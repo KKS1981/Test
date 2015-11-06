@@ -1,6 +1,7 @@
-﻿using Model;
+using Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 namespace SchoolService.WCFServices.Services
@@ -21,6 +22,10 @@ namespace SchoolService.WCFServices.Services
         [OperationContract]
         [WebGet]
         List<TeacherViewModel> TeacherViewList();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/Uploadteacherimage/{teacherid}")]
+        List<TeacherViewModel> UploadTeacherImage(string teacherid, Stream stream);
         
     }
 }

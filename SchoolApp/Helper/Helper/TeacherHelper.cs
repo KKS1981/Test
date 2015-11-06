@@ -1,11 +1,14 @@
-﻿using AccountService;
+using AccountService;
 using Domain.School;
 using Model;
 using Repository;
 using SchoolService;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +54,22 @@ namespace Helper.Helper
             var teachers = _uow.Teachers.Fetch().ToList();
             return teachers.Select(x => ObjectMapper.MapToTeacherViewModel(x)).ToList();
 
+        }
+
+        public void SaveTeacherImage(string teacherID, System.IO.Stream stream)
+        {
+            var teacher = _uow.Teachers.FindById(Convert.ToInt32(teacherID));
+            var upload = System.Configuration.ConfigurationManager.AppSettings["UploadFolder"]+"asdf.png";
+            MultipartParser parser = new MultipartParser(stream);
+            var fileStream = System.IO.File.Create(upload);
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(fileStream);
+            fileStream.Close();
+
+
+          
+            
+           
         }
     }
 }

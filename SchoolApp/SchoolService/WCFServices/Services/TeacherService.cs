@@ -1,4 +1,4 @@
-﻿using Helper.Helper;
+using Helper.Helper;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -44,6 +44,14 @@ namespace SchoolService.WCFServices.Services
         [PrincipalPermission(SecurityAction.Demand)]
         public List<TeacherViewModel> TeacherViewList()
         {
+            return _teacherHelper.GetTeacherViewList();
+        }
+
+
+        public List<TeacherViewModel> UploadTeacherImage(string teacherid, System.IO.Stream stream)
+        {
+            _teacherHelper.SaveTeacherImage(teacherid, stream);
+            
             return _teacherHelper.GetTeacherViewList();
         }
     }
