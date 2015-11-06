@@ -17,6 +17,14 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
             $scope.formsubmitted = false;
         }
     }
+    $scope.image = function () {
+        $scope.formsubmitted = true;
+        if ($scope.teacherform.$valid) {
+            $scope.info = "image";
+            $scope.heading = "Teacher Picture";
+            $scope.formsubmitted = false;
+        }
+    }
     $scope.basic = function () {
         $scope.info = "basic";
         $scope.heading = "Basic Information";
