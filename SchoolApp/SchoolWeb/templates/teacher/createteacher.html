@@ -1,4 +1,5 @@
-﻿<div class="box box-default">
+
+<div class="box box-default">
     <div class="box-header with-border">
         <h2>{{heading}}</h2>
     </div>
@@ -6,6 +7,7 @@
         <form ng-submit="createacher()" role="form" class="form-horizontal" name="teacherform" ng-init="teacher={}" novalidate>
             <div ng-if="info=='basic'" ng-include="'/templates/teacher/createbasicinformation.html'"></div>
             <div ng-if="info=='address'" ng-include="'/templates/teacher/createcontact.html'"></div>
+            <div ng-if="info=='image'" ng-include="'/templates/teacher/createteacherimage.html'"></div>
         </form>
     </div>
 </div>
