@@ -229,7 +229,10 @@ date.match(/\/(.*)\//).pop()))
     var string = day + " " + months[month] + " " + year;
     return string;
 }
-
+Date.prototype.toMSJSON = function () {
+    var date = '/Date(' + this.getTime() + ')/'; //CHANGED LINE
+    return date;
+};
 
 
 

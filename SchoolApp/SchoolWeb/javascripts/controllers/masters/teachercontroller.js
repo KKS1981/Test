@@ -30,11 +30,18 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.heading = "Basic Information";
     }
     $scope.isinvalid = function (data) {
-        
+
         if ($scope.formsubmitted == undefined && !data.$dirty) {
             return false;
         }
         return data.$invalid && (data.$dirty || $scope.formsubmitted);
+    }
+    $scope.addTeacher = function () {
+        var teachercopy = angular.copy($scope.teacher)
+        teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
+        ajax('/SVC/TeacherService/CreateTeacher', {}, { method: 'POST', isArray: true, headers: { Accept: 'application/json' } }, teachercopy, function (data) {
+
+        });
     }
 }
 ]

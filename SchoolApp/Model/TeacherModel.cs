@@ -38,7 +38,7 @@ namespace Model
         public DateTime Dob { get; set; }
 
         [DataMember]
-        public DateTime Doj { get; set; }
+        public DateTime? Doj { get; set; }
 
         [DataMember(IsRequired = true)]
         public string PhoneNumber { get; set; }

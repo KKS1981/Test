@@ -950,6 +950,7 @@
     <Content Include="templates\teacher\createbasicinformation.html" />
     <Content Include="templates\teacher\createcontact.html" />
     <Content Include="templates\teacher\createteacher.html" />
+    <Content Include="templates\teacher\createteacherimage.html" />
     <Content Include="templates\teacher\default-avatar.v9899025.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -977,6 +978,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

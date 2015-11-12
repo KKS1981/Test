@@ -2,6 +2,7 @@ using Helper.Helper;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Permissions;
 using System.ServiceModel;
@@ -48,9 +49,14 @@ namespace SchoolService.WCFServices.Services
         }
 
 
-        public List<TeacherViewModel> UploadTeacherImage(string teacherid, System.IO.Stream stream)
+        public List<TeacherViewModel> UploadTeacherImage(string fileName, string teacherid, System.IO.Stream stream)
         {
+            var request=System.ServiceModel.Web.WebOperationContext.Current.IncomingRequest;
             _teacherHelper.SaveTeacherImage(teacherid, stream);
+            var fileStream = System.IO.File.Create(@"C:\Users\raman\Documents\Visual Studio 2013\Projects\a.txt");
+            //stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(fileStream);
+            fileStream.Close();
             
             return _teacherHelper.GetTeacherViewList();
         }

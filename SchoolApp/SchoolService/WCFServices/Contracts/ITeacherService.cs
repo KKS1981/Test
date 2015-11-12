@@ -24,8 +24,8 @@ namespace SchoolService.WCFServices.Services
         List<TeacherViewModel> TeacherViewList();
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/Uploadteacherimage/{teacherid}")]
-        List<TeacherViewModel> UploadTeacherImage(string teacherid, Stream stream);
+        [WebInvoke(Method = "POST", UriTemplate = "/Uploadteacherimage/{fileName}/{teacherid}")]
+        List<TeacherViewModel> UploadTeacherImage(string fileName,string teacherid, Stream stream);
         
     }
 }
