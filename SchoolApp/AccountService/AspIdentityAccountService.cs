@@ -151,14 +151,23 @@ namespace AccountService
 
         public UserModel CreateUser(string userName, string email, string passWord, string role)
         {
-            var user = new ApplicationUser();
-            user.Email = email;
-            user.UserName = userName;
-            var result = _manager.Create(user, passWord);
-            if (!result.Succeeded)
-                throw new Exception("An Error Occurred to Register User");
-            user = _manager.FindByName(userName);
-            return new UserModel { UserID = user.Id, UserName = user.UserName };
+            try
+            {
+                var user = new ApplicationUser();
+                user.Email = email;
+                user.UserName = userName;
+                var result = _manager.Create(user, passWord);
+                if (!result.Succeeded)
+                    throw new Exception(string.Join(",",result.Errors));
+                user = _manager.FindByName(userName);
+                return new UserModel { UserID = user.Id, UserName = user.UserName };
+            }
+            catch (Exception e)
+            {
+                //Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                throw e;
+            }
+
         }
     }
 }

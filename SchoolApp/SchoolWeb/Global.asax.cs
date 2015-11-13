@@ -20,5 +20,13 @@ namespace SchoolWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DependencyLoader.LoadDependency(SingletonContainer.Instance);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            //Response.Clear();
+            Elmah.ErrorSignal.FromCurrentContext().Raise(exception);
+            
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace SchoolService.Dependencies
                 ChannelDispatcher cd = cdb as ChannelDispatcher;
                 if (cd != null)
                 {
+                    var handler = new ErrorHandler();
+                    cd.ErrorHandlers.Add(handler);
                     foreach (EndpointDispatcher ed in cd.Endpoints)
                     {
                         ed.DispatchRuntime.InstanceProvider =

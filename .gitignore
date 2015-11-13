@@ -32,3 +32,4 @@ SchoolApp/SchoolApp.v12.suo
 *.user
 task.txt
 SchoolApp/packages/
+SchoolApp/SchoolWeb/App_Data/Elmah.sdf
