@@ -106,19 +106,19 @@
         <label for="Dob">Date Of Birth</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="teacher.Dob" class="form-control" name="Dob" required />
+        <input type="text" ng-model="teacher.Dob" class="form-control date" name="Dob" required />
         <div class="help-block" ng-messages="teacherform.Dob.$error">
             <div ng-message="required">Birth Date is Required</div>
         </div>
     </div>
-
+    
 </div>
 <div class="form-group">
     <div class="col-sm-2 col-sm-offset-1">
         <label for="Doj">Date Of Join</label>
     </div>
     <div class="col-sm-6">
-        <input type="text" ng-model="teacher.Doj" class="form-control" />
+        <input type="text" ng-model="teacher.Doj" class="form-control date" />
     </div>
 
 </div>
@@ -148,10 +148,13 @@
         <label for="Gender">Gender</label>
     </div>
     <div class="col-sm-6">
-        <select type="text" ng-model="teacher.Gender" class="form-control chosen">
+        <select type="text" ng-model="teacher.Gender" class="form-control chosen" name="Gender" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
+        <div class="help-block" ng-messages="teacherform.Gender.$error">
+            <div ng-message="required">Gender is Required</div>
+        </div>
     </div>
 
 </div>
@@ -179,6 +182,6 @@
         <a class="btn btn-primary" ui-sref="teachers">Back</a>
     </div>
     <div class="col-sm-6 col-xs-6">
-        <a class="btn btn-primary" ng-click="address()">Next</a>
+        <input type="button" class="btn btn-primary" ng-click="address()" value="Next"></input>
     </div>
 </div>

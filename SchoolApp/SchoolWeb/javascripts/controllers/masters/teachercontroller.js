@@ -39,8 +39,10 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
     $scope.addTeacher = function () {
         var teachercopy = angular.copy($scope.teacher)
         teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
+        if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
+            teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
         ajax('/SVC/TeacherService/CreateTeacher', {}, { method: 'POST', isArray: true, headers: { Accept: 'application/json' } }, teachercopy, function (data) {
-
+            $state.go("teachers");
         });
     }
 }

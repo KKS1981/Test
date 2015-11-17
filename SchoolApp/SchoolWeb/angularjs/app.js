@@ -164,26 +164,26 @@ app.directive('formGroup', [function () {
     return {
         restrict: 'C',
         link: function (scope, element, attribute) {
-            
+
             var $formGroup = $(element);
-                var $inputs = $formGroup.find('input[ng-model],textarea[ng-model],select[ng-model]');
+            var $inputs = $formGroup.find('input[ng-model],textarea[ng-model],select[ng-model]');
 
-                if ($inputs.length > 0) {
-                    $inputs.each(function () {
-                        var $input = $(this);
-                        scope.$watch(function () {
+            if ($inputs.length > 0) {
+                $inputs.each(function () {
+                    var $input = $(this);
+                    scope.$watch(function () {
 
-                            if ((scope.formsubmitted == undefined || !scope.formsubmitted)&& !$input.hasClass('ng-dirty')) {
-                                return false;
-                            }
-                            return $input.hasClass('ng-invalid') && ($input.hasClass('ng-dirty') || scope.formsubmitted);
-                            
-                        }, function (isInvalid) {
-                            $formGroup.toggleClass('has-error', isInvalid);
-                        });
+                        if ((scope.formsubmitted == undefined || !scope.formsubmitted) && !$input.hasClass('ng-dirty')) {
+                            return false;
+                        }
+                        return $input.hasClass('ng-invalid') && ($input.hasClass('ng-dirty') || scope.formsubmitted);
+
+                    }, function (isInvalid) {
+                        $formGroup.toggleClass('has-error', isInvalid);
                     });
-                }
-            
+                });
+            }
+
         }
     };
 }]);
@@ -220,19 +220,28 @@ app.directive('helpBlock', [function () {
     };
 }]);
 function toDateString(date) {
-    var a = new Date(eval(
-date.match(/\/(.*)\//).pop()))
-    var day = a.getDay();
+    var a = new Date(parseInt(date.match(/\/Date\(([0-9]+)(?:.*)\)\//)[1]));
+    var day = a.getDate();
     var month = a.getMonth();
     var year = a.getFullYear();
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nev', 'Dec'];
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var string = day + " " + months[month] + " " + year;
     return string;
 }
 Date.prototype.toMSJSON = function () {
-    var date = '/Date(' + this.getTime() + ')/'; //CHANGED LINE
+    var utcdate = Date.UTC(this.getFullYear(), this.getMonth(), this.getDate(), this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
+    var date = '/Date(' + utcdate + ')/'; //CHANGED LINE
     return date;
 };
+
+app.directive("date", [function () {
+    return {
+        restrict: 'C',
+        link: function (scope, element, attribute) {            
+            $(element).datepicker({ format: 'dd M yyyy' });
+        }
+    };
+}])
 
 
 
