@@ -10,7 +10,7 @@ namespace SchoolService.WCFServices.Services
     interface ITeacherService
     {
         [OperationContract]
-        void CreateTeacher(Model.CreateTeacher model);
+        int CreateTeacher(Model.CreateTeacher model);
 
         [OperationContract]
         EditTeacher EditTeacher(EditTeacher model);

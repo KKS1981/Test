@@ -41,7 +41,12 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
         if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
             teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
-        ajax('/SVC/TeacherService/CreateTeacher', {}, { method: 'POST', isArray: true, headers: { Accept: 'application/json' } }, teachercopy, function (data) {
+        ajax('/SVC/TeacherService/CreateTeacher', {}, {
+            method: 'POST', isArray: false, headers: { Accept: 'text' }, transformResponse: [function (data, headersGetter) {
+                return { id: parseInt(data) };
+                console.log(data);
+            }]
+        }, teachercopy, function (data) {
             $state.go("teachers");
         });
     }

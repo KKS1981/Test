@@ -24,10 +24,10 @@ namespace SchoolService.WCFServices.Services
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
-        public void CreateTeacher(CreateTeacher model)
+        public int CreateTeacher(CreateTeacher model)
         {
 
-            _teacherHelper.CreateTeacher(model);
+           return  _teacherHelper.CreateTeacher(model);
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]

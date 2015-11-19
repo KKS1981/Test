@@ -23,7 +23,7 @@ namespace Helper.Helper
             _uow = uow;
             _aService = aService;
         }
-        public void CreateTeacher(Model.CreateTeacher model, string Path = null)
+        public int CreateTeacher(Model.CreateTeacher model, string Path = null)
         {
             var user = _aService.CreateUser(model.UserName, model.Email, model.Password, Roles.Teacher.ToString());
             var teacher = ObjectMapper.MapToTeacher(model);
@@ -32,6 +32,7 @@ namespace Helper.Helper
             teacher.ImagePath = Path;
             _uow.Teachers.Add(teacher);
             _uow.Teachers.SaveChanges();
+            return teacher.Id;
         }
 
         public Model.EditTeacher EditTeacher(Model.EditTeacher model)
