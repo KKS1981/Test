@@ -49,16 +49,10 @@ namespace SchoolService.WCFServices.Services
         }
 
 
-        public List<TeacherViewModel> UploadTeacherImage(string fileName, string teacherid, System.IO.Stream stream)
-        {
-            var request=System.ServiceModel.Web.WebOperationContext.Current.IncomingRequest;
-            _teacherHelper.SaveTeacherImage(teacherid, stream);
-            var fileStream = System.IO.File.Create(@"C:\Users\raman\Documents\Visual Studio 2013\Projects\a.txt");
-            //stream.Seek(0, SeekOrigin.Begin);
-            stream.CopyTo(fileStream);
-            fileStream.Close();
-            
-            return _teacherHelper.GetTeacherViewList();
+        public void UploadTeacherImage(string fileName, string teacherid, System.IO.Stream stream)
+        {            
+            _teacherHelper.SaveTeacherImage(fileName,teacherid, stream);
+            return ;
         }
     }
 }

@@ -57,19 +57,12 @@ namespace Helper.Helper
 
         }
 
-        public void SaveTeacherImage(string teacherID, System.IO.Stream stream)
+        public void SaveTeacherImage(string fileName, string teacherID, System.IO.Stream stream)
         {
             var teacher = _uow.Teachers.FindById(Convert.ToInt32(teacherID));
-            var fileName=Guid.NewGuid().ToString();
-            var upload = System.IO.Path.Combine(System.Configuration.ConfigurationManager.AppSettings["UploadFolderPath"] + fileName);
-            var fileStream = System.IO.File.Create(upload);
-            stream.CopyTo(fileStream);
-            fileStream.Close();
-            teacher.ImagePath = fileName;
-
-
-
-
+            var path = FileHelper.SaveFile(fileName, stream);
+            teacher.ImagePath = path;
+            _uow.Teachers.SaveChanges();
         }
     }
 }

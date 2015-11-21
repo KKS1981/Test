@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.School;
+using Helper.Helper;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -269,7 +270,7 @@ namespace Helper
             model.Id = teacher.Id;
             model.MobileNumber = teacher.MobileNo;
             model.PhoneNumber = teacher.PhoneNo;
-            model.ImagePath = teacher.ImagePath;
+            model.ImagePath = FileHelper.GetFileUrl(teacher.ImagePath);
 
             return model;
         }

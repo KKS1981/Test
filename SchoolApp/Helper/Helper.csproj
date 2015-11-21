@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumeration.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\MasterHelper.cs" />
     <Compile Include="Helper\StudentHelper.cs" />
     <Compile Include="Helper\TeacherHelper.cs" />

@@ -47,6 +47,23 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
                 console.log(data);
             }]
         }, teachercopy, function (data) {
+            var input = document.getElementById("teacherimage");
+            if (input.files.length > 0) {
+                var filename = input.files[0].name;
+                var url = '/SVC/TeacherService/Uploadteacherimage/' + filename + '/' + data.id;
+                var filedata = {};
+                filedata.stream = input.files[0];
+                ajax(url, {}, {
+                    method: 'POST', headers: { "Accept": "text","Content-Type":"image" }, transformRequest: function (data, headersGetter) {
+                       
+                        var headers = headersGetter();
+                        delete headers['Content-Type'];
+                        headers['Content-Type'] = "image";
+                        return input.files[0];
+                    }
+                }, input.files[0]);
+            }          
+
             $state.go("teachers");
         });
     }
