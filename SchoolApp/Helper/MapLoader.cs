@@ -280,13 +280,37 @@ namespace Helper
             if (value.HasValue)
             {
                 if (value.Value)
-                    return "male";
+                    return "Male";
                 else
-                    return "female";
+                    return "Female";
             }
             else
                 return "";
 
+        }
+
+        internal static EditTeacher MapToEditTeacherModel(Teacher teacher)
+        {
+            var editteacher = new EditTeacher();
+            editteacher.City = teacher.City;
+            editteacher.Country = teacher.Country;
+            editteacher.Dob = teacher.DOB;
+            editteacher.Doj = teacher.JoiningDate;
+            editteacher.FatherName = teacher.FatherName;
+            editteacher.FirstName = teacher.FirstName;
+            editteacher.Gender = ToGender(teacher.Gender);
+            editteacher.Id = teacher.Id;
+            editteacher.LastName = teacher.LastName;
+            editteacher.MobileNumber = teacher.MobileNo;
+            editteacher.MotherName = teacher.MotherName;
+            editteacher.Nationality = teacher.Nationality;
+            editteacher.PhoneNumber = teacher.PhoneNo;
+            editteacher.Qualification = teacher.Qualification;
+            editteacher.State = teacher.State;
+            editteacher.StreetAddress = teacher.StreetAddress;
+            editteacher.ZipCode = teacher.PinCode;
+            editteacher.Email = teacher.EmailId;
+            return editteacher;
         }
     }
 

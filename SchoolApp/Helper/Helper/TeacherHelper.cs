@@ -64,5 +64,11 @@ namespace Helper.Helper
             teacher.ImagePath = path;
             _uow.Teachers.SaveChanges();
         }
+
+        public Model.EditTeacher EditTeacher(int id)
+        {
+            var teacher = _uow.Teachers.FindById(id);
+            return ObjectMapper.MapToEditTeacherModel(teacher);
+        }
     }
 }

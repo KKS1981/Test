@@ -1,0 +1,212 @@
+﻿<div class="box box-default">
+    <div class="box-header with-border">
+        <h2>{{heading}}</h2>
+    </div>
+    <div class="box-body">
+        <form ng-submit="createacher()" role="form" class="form-horizontal" name="teacherform"  novalidate>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Email">Email</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.Email" class="form-control" name="Email" remoteurl="/SVC/LoginService/IsEmailAvailiable" required remote />
+                    <div class="help-block" ng-messages="teacherform.Email.$error">
+                        <div ng-message="required">Email is Required</div>
+                        <div ng-message="remote">Email not Availiable</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="FirstName">First Name</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.FirstName" class="form-control" name="FirstName" required />
+                    <div class="help-block" ng-messages="teacherform.FirstName.$error">
+                        <div ng-message="required">First Name is Required</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="LastName">Last Name</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.LastName" class="form-control" name="LastName" required />
+                    <div class="help-block" ng-messages="teacherform.LastName.$error">
+                        <div ng-message="required">Last Name is Required</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="MotherName">Mother Name</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.MotherName" class="form-control" name="MotherName" required />
+                    <div class="help-block" ng-messages="teacherform.MotherName.$error">
+                        <div ng-message="required">Mother Name is Required</div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="FatherName">Father Name</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.FatherName" class="form-control" name="FatherName" required />
+                    <div class="help-block" ng-messages="teacherform.FatherName.$error">
+                        <div ng-message="required">Father Name is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Dob">Date Of Birth</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.Dob" class="form-control date" name="Dob" required />
+                    <div class="help-block" ng-messages="teacherform.Dob.$error">
+                        <div ng-message="required">Birth Date is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Doj">Date Of Join</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.Doj" class="form-control date" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="PhoneNumber">Phone Number</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.PhoneNumber" name="PhoneNumber" class="form-control" required />
+                    <div class="help-block" ng-messages="teacherform.PhoneNumber.$error">
+                        <div ng-message="required">PhoneNumber is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="MobileNumber">Mobile Number</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.MobileNumber" class="form-control" required />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Gender">Gender</label>
+                </div>
+                <div class="col-sm-6">
+                    <select type="text" ng-model="teacher.Gender" class="form-control chosen" name="Gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <div class="help-block" ng-messages="teacherform.Gender.$error">
+                        <div ng-message="required">Gender is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Nationality">Nationality</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.Nationality" name="Nationality" class="form-control" required />
+                    <div class="help-block" ng-messages="teacherform.Nationality.$error">
+                        <div ng-message="required">Nationality is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Qualification">Qualification</label>
+                </div>
+                <div class="col-sm-6">
+                    <textarea ng-model="teacher.Qualification" class="form-control" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="City">City</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.City" class="form-control" name="City" required />
+                    <div class="help-block" ng-messages="teacherform.City.$error">
+                        <div ng-message="required">City is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="State">State</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" ng-model="teacher.State" class="form-control" name="State" required />
+                    <div class="help-block" ng-messages="teacherform.State.$error">
+                        <div ng-message="required">State is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="StreetAddress">Street Address</label>
+                </div>
+                <div class="col-sm-6">
+                    <textarea class="form-control" ng-model="teacher.StreetAddress" name="StreetAddress"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="Country">Country</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="teacher.Country" name="Country" required />
+                    <div class="help-block" ng-messages="teacherform.Country.$error">
+                        <div ng-message="required">Country is Required</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <label for="ZipCode">Zip Code</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="teacher.ZipCode" name="ZipCode" required />
+                    <div class="help-block" ng-messages="teacherform.ZipCode.$error">
+                        <div ng-message="required">ZipCode is Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6 col-xs-6 text-right">
+                    <input type="button" class="btn btn-primary" ng-click="basic()" value="Back" />
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <input type="button" class="btn btn-primary" value="Create Teacher" ng-click="editTeacher()" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

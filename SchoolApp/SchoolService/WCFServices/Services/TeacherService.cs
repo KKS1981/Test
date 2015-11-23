@@ -48,11 +48,17 @@ namespace SchoolService.WCFServices.Services
             return _teacherHelper.GetTeacherViewList();
         }
 
-
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
         public void UploadTeacherImage(string fileName, string teacherid, System.IO.Stream stream)
         {            
             _teacherHelper.SaveTeacherImage(fileName,teacherid, stream);
             return ;
+        }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        public EditTeacher GetEditTeacher(int id)
+        {
+            return _teacherHelper.EditTeacher(id);
         }
     }
 }

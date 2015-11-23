@@ -30,6 +30,8 @@ namespace Helper.Helper
 
         public static string GetFileUrl(string filename)
         {
+            if (string.IsNullOrEmpty(filename))
+                return string.Empty;
             var upload = System.Configuration.ConfigurationManager.AppSettings["UploadFolderName"] + filename;
             return upload;
 

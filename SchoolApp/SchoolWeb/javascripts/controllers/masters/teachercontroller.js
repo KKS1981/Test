@@ -9,6 +9,17 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.info = "basic";
         $scope.heading = "Basic Information";
     }
+    if ($state.$current.name == "editteacher") {
+        $scope.teacher = {};
+        var id = $stateParams.id
+        $scope.heading = "Edit Teacher";
+        ajax('/SVC/TeacherService/GetEditTeacher', {}, { method: 'GET', isArray: false, headers: { Accept: 'application/json' } }, { "id": id }, function (data) {
+            data.Dob = toDateString(data.Dob);
+            data.Doj = toDateString(data.Doj);
+            $scope.teacher = data
+
+        });
+    }
     $scope.address = function () {
         $scope.formsubmitted = true;
         if ($scope.teacherform.$valid) {
@@ -17,12 +28,23 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
             $scope.formsubmitted = false;
         }
     }
-    $scope.image = function () {
-        $scope.formsubmitted = true;
+    $scope.addTeacher = function () {
         if ($scope.teacherform.$valid) {
-            $scope.info = "image";
-            $scope.heading = "Teacher Picture";
-            $scope.formsubmitted = false;
+            var teachercopy = angular.copy($scope.teacher)
+            teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
+            if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
+                teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
+            ajax('/SVC/TeacherService/CreateTeacher', {}, {
+                method: 'POST', isArray: false, headers: { Accept: 'text' }, transformResponse: [function (data, headersGetter) {
+                    return { id: parseInt(data) };                   
+                }]
+            }, teachercopy, function (data) {
+                $scope.teacher.id = data.id;
+                $scope.formsubmitted = true;
+                $scope.info = "image";
+                $scope.heading = "Teacher Picture";
+                $scope.formsubmitted = false;
+            });
         }
     }
     $scope.basic = function () {
@@ -36,36 +58,25 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         }
         return data.$invalid && (data.$dirty || $scope.formsubmitted);
     }
-    $scope.addTeacher = function () {
-        var teachercopy = angular.copy($scope.teacher)
-        teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
-        if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
-            teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
-        ajax('/SVC/TeacherService/CreateTeacher', {}, {
-            method: 'POST', isArray: false, headers: { Accept: 'text' }, transformResponse: [function (data, headersGetter) {
-                return { id: parseInt(data) };
-                console.log(data);
-            }]
-        }, teachercopy, function (data) {
-            var input = document.getElementById("teacherimage");
-            if (input.files.length > 0) {
-                var filename = input.files[0].name;
-                var url = '/SVC/TeacherService/Uploadteacherimage/' + filename + '/' + data.id;
-                var filedata = {};
-                filedata.stream = input.files[0];
-                ajax(url, {}, {
-                    method: 'POST', headers: { "Accept": "text","Content-Type":"image" }, transformRequest: function (data, headersGetter) {
-                       
-                        var headers = headersGetter();
-                        delete headers['Content-Type'];
-                        headers['Content-Type'] = "image";
-                        return input.files[0];
-                    }
-                }, input.files[0]);
-            }          
+    $scope.image = function () {
+        var input = document.getElementById("teacherimage");
+        if (input.files.length > 0) {
+            var filename = input.files[0].name;
+            var url = '/SVC/TeacherService/Uploadteacherimage/' + filename + '/' + $scope.teacher.id;
+            var filedata = {};
+            filedata.stream = input.files[0];
+            ajax(url, {}, {
+                method: 'POST', headers: { "Accept": "text", "Content-Type": "image" }, transformRequest: function (data, headersGetter) {
 
-            $state.go("teachers");
-        });
+                    var headers = headersGetter();
+                    delete headers['Content-Type'];
+                    headers['Content-Type'] = "image";
+                    return input.files[0];
+                }
+            }, input.files[0]);
+        }
+        $state.go("teachers");
+
     }
 }
 ]
@@ -88,7 +99,7 @@ function teachertable(scope, element, attribute) {
         "columnDefs": [
             {
                 "render": function (data, type, row) {
-                    return "<a class='fa fa-edit compile' title='edit' ui-sref='editclass(" + JSON.stringify({ id: data }) + ")' href='#/editclass/{ID}'></a>";
+                    return "<a class='fa fa-edit compile' title='edit' ui-sref='editteacher(" + JSON.stringify({ id: data }) + ")' href='#/editteacher/{Id}'></a>";
                 },
                 "targets": 5,
                 "orderable": false

@@ -93,7 +93,7 @@ namespace Model
         public DateTime Dob { get; set; }
 
         [DataMember]
-        public DateTime Doj { get; set; }
+        public DateTime? Doj { get; set; }
 
         [DataMember(IsRequired = true)]
         public string PhoneNumber { get; set; }
@@ -124,6 +124,9 @@ namespace Model
 
         [DataMember]
         public string StreetAddress { get; set; }
+
+        [DataMember]
+        public string Email { get; set; }
     }
 
     [DataContract]

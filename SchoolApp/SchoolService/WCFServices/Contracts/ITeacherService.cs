@@ -17,6 +17,10 @@ namespace SchoolService.WCFServices.Services
 
         [OperationContract]
         [WebGet]
+        EditTeacher GetEditTeacher(int id);
+
+        [OperationContract]
+        [WebGet]
         List<TeacherListModel> TeacherList();
 
         [OperationContract]
