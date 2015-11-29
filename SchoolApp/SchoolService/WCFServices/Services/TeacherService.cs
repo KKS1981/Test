@@ -60,5 +60,11 @@ namespace SchoolService.WCFServices.Services
         {
             return _teacherHelper.EditTeacher(id);
         }
+
+
+        public ValidModel IsEmailValidForTeacher(TeacherEmailValid model)
+        {
+            return _teacherHelper.IsEmailValidForTeacher(model.ID,model.Email);
+        }
     }
 }

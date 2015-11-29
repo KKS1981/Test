@@ -15,7 +15,8 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         $scope.heading = "Edit Teacher";
         ajax('/SVC/TeacherService/GetEditTeacher', {}, { method: 'GET', isArray: false, headers: { Accept: 'application/json' } }, { "id": id }, function (data) {
             data.Dob = toDateString(data.Dob);
-            data.Doj = toDateString(data.Doj);
+            if (data.Doj != null)
+                data.Doj = toDateString(data.Doj);
             $scope.teacher = data
 
         });
@@ -36,7 +37,7 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
                 teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
             ajax('/SVC/TeacherService/CreateTeacher', {}, {
                 method: 'POST', isArray: false, headers: { Accept: 'text' }, transformResponse: [function (data, headersGetter) {
-                    return { id: parseInt(data) };                   
+                    return { id: parseInt(data) };
                 }]
             }, teachercopy, function (data) {
                 $scope.teacher.id = data.id;
@@ -77,6 +78,18 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
         }
         $state.go("teachers");
 
+    }
+    $scope.editTeacher = function () {
+        if ($scope.teacherform.$valid) {
+            var teachercopy = angular.copy($scope.teacher)
+            teachercopy.Dob = (new Date($scope.teacher.Dob)).toMSJSON();
+            if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
+                teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
+            ajax('/SVC/TeacherService/EditTeacher', {}, {
+                method: 'POST', isArray: false, headers: { Accept: 'application/json' }}, teachercopy, function (data) {
+               
+            });
+        }
     }
 }
 ]
@@ -143,5 +156,34 @@ function teachertable(scope, element, attribute) {
         ]
     });
 
+}
+
+function isteacherusernamevalid(scope, elm, attrs, ctrl, $q, $timeout, ajax) {
+    ctrl.$asyncValidators.isteacherusernamevalid = function (modelValue, viewValue) {
+        if (ctrl.$isEmpty(modelValue)) {
+            // consider empty model valid
+            return $q.when();
+        }
+        var def = $q.defer();
+        $timeout(function () {
+            // Mock a delayed response
+            var url = attrs.remoteurl;
+            var _senddata = {}
+            _senddata.ID=scope.teacher.Id;
+            _senddata.Email = scope.teacher.Email;
+            _senddata[attrs["name"]] = modelValue;
+            ajax(url, {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, _senddata, function (data) {
+                if (data.IsValid) {
+                    def.resolve();
+                }
+                else
+                    def.reject();
+            }, function (data) { });
+
+
+        }, 2000);
+
+        return def.promise;
+    }
 }
 

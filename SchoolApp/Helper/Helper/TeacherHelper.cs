@@ -70,5 +70,14 @@ namespace Helper.Helper
             var teacher = _uow.Teachers.FindById(id);
             return ObjectMapper.MapToEditTeacherModel(teacher);
         }
+
+        public ValidModel IsEmailValidForTeacher(int p1, string p2)
+        {
+            var user = _aService.GetByEmail(p2);
+            if (user == null)
+                return new ValidModel { IsValid = true };
+            var teacher = _uow.Teachers.FindById(p1);
+            return new ValidModel { IsValid = teacher.EmailId == p2 };
+        }
     }
 }

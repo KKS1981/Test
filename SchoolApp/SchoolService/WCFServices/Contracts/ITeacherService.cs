@@ -30,6 +30,9 @@ namespace SchoolService.WCFServices.Services
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/Uploadteacherimage/{fileName}/{teacherid}")]
         void UploadTeacherImage(string fileName,string teacherid, Stream stream);
+
+        [OperationContract]
+        ValidModel IsEmailValidForTeacher(TeacherEmailValid model);
         
     }
 }

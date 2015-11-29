@@ -21,6 +21,9 @@ namespace AccountService
 
         bool IsUserExist(string userName);
 
-        bool IsEmailExist(string p);
+        bool IsEmailExist(string email);
+
+        UserModel GetByEmail(string email);
+
     }
 }

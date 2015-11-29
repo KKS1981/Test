@@ -2,6 +2,7 @@
     <div class="box-header with-border">
         <h2>{{heading}}</h2>
     </div>
+   
     <div class="box-body">
         <form ng-submit="createacher()" role="form" class="form-horizontal" name="teacherform"  novalidate>
             <div class="form-group">
@@ -9,7 +10,7 @@
                     <label for="Email">Email</label>
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" ng-model="teacher.Email" class="form-control" name="Email" remoteurl="/SVC/LoginService/IsEmailAvailiable" required remote />
+                    <input type="text" ng-model="teacher.Email" class="form-control" name="Email" remoteurl="/SVC/TeacherService/IsEmailValidForTeacher" custom-validation="isteacherusernamevalid" required isteacherusernamevalid />
                     <div class="help-block" ng-messages="teacherform.Email.$error">
                         <div ng-message="required">Email is Required</div>
                         <div ng-message="remote">Email not Availiable</div>
@@ -73,7 +74,7 @@
                     <label for="Dob">Date Of Birth</label>
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" ng-model="teacher.Dob" class="form-control date" name="Dob" required />
+                    <input type="text" ng-model="teacher.Dob" class="form-control date" name="Dob"  required />
                     <div class="help-block" ng-messages="teacherform.Dob.$error">
                         <div ng-message="required">Birth Date is Required</div>
                     </div>
@@ -203,7 +204,7 @@
                     <input type="button" class="btn btn-primary" ng-click="basic()" value="Back" />
                 </div>
                 <div class="col-sm-6 col-xs-6">
-                    <input type="button" class="btn btn-primary" value="Create Teacher" ng-click="editTeacher()" />
+                    <input type="button" class="btn btn-primary" value="Edit Teacher" ng-click="editTeacher()" />
                 </div>
             </div>
 

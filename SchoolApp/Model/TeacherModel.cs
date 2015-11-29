@@ -127,6 +127,8 @@ namespace Model
 
         [DataMember]
         public string Email { get; set; }
+
+
     }
 
     [DataContract]
@@ -163,5 +165,14 @@ namespace Model
         public DateTime Dob { get; set; }
         [DataMember]
         public string ImagePath { get; set; }
+    }
+
+    [DataContract]
+    public class TeacherEmailValid
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string Email { get; set; }
     }
 }

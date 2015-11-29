@@ -3,7 +3,6 @@ var app = angular.module(appname, ['ui.router', 'ngResource', 'ngMessages']);
 app.directive('datatable', ['$compile', function ($compile) {
     var obj = {};
     obj.restrict = 'A';
-
     obj.link = function (scope, element, attribute) {
         scope.$watch(attribute.data, function (value) {
             if (value != null && value != undefined) {
@@ -12,11 +11,17 @@ app.directive('datatable', ['$compile', function ($compile) {
                 for (var i = 0; i < elem.length; i++) {
                     $compile(elem[i])(scope)
                 }
-
             }
-
-
         })
+    }
+    return obj;
+}]);
+app.directive('customValidation', ['ajax', "$q", "$timeout", function (ajax, $q, $timeout) {
+    var obj = {};
+    obj.require = 'ngModel';
+    obj.restrict = 'A';
+    obj.link = function (scope, elm, attrs, ctrl) {
+        window[attrs["customValidation"]](scope, elm, attrs, ctrl, $q, $timeout, ajax);
     }
     return obj;
 }]);
@@ -234,11 +239,38 @@ Date.prototype.toMSJSON = function () {
     return date;
 };
 
-app.directive("date", [function () {
+app.directive("date", [ function () {
     return {
+        require: "ngModel",
         restrict: 'C',
-        link: function (scope, element, attribute) {            
-            $(element).datepicker({ format: 'dd M yyyy' });
+        link: function (scope, element, attribute, ctrl) {
+            
+            ctrl.$validators.date = function (modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty models to be valid
+                    return true;
+                }
+                a = {};
+                try {
+                    var a = new Date(modelValue);
+                }
+                catch (err) {
+
+                }
+                if (a instanceof Date) {
+                    var day = a.getDate();
+                    var month = a.getMonth();
+                    var year = a.getFullYear();
+                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    var string = day + " " + months[month] + " " + year;
+                    if (string == modelValue)
+                    return true;
+                }
+
+                // it is invalid
+                return false;
+            };
+            $(element).datepicker({ format: 'dd M yyyy', forceParse: false });
         }
     };
 }])

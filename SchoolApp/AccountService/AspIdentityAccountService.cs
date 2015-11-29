@@ -158,7 +158,7 @@ namespace AccountService
                 user.UserName = userName;
                 var result = _manager.Create(user, passWord);
                 if (!result.Succeeded)
-                    throw new Exception(string.Join(",",result.Errors));
+                    throw new Exception(string.Join(",", result.Errors));
                 user = _manager.FindByName(userName);
                 return new UserModel { UserID = user.Id, UserName = user.UserName };
             }
@@ -168,6 +168,21 @@ namespace AccountService
                 throw e;
             }
 
+        }
+
+        public UserModel GetByEmail(string email)
+        {
+            try
+            {
+                var user = _store.FindByEmailAsync(email).Result;
+                if (user == null)
+                    return null;
+                return new UserModel { UserID = user.Id, UserName = user.UserName };
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
