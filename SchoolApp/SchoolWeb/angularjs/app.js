@@ -4,13 +4,14 @@ app.directive('datatable', ['$compile', function ($compile) {
     var obj = {};
     obj.restrict = 'A';
     obj.link = function (scope, element, attribute) {
+        scope.onrowadd = function (tr) {
+            $compile(tr)(scope)
+        }
         scope.$watch(attribute.data, function (value) {
             if (value != null && value != undefined) {
                 window[attribute.functionname](scope, element, attribute);
-                var elem = element.find(".compile")
-                for (var i = 0; i < elem.length; i++) {
-                    $compile(elem[i])(scope)
-                }
+                
+
             }
         })
     }
@@ -239,12 +240,12 @@ Date.prototype.toMSJSON = function () {
     return date;
 };
 
-app.directive("date", [ function () {
+app.directive("date", [function () {
     return {
         require: "ngModel",
         restrict: 'C',
         link: function (scope, element, attribute, ctrl) {
-            
+
             ctrl.$validators.date = function (modelValue, viewValue) {
                 if (ctrl.$isEmpty(modelValue)) {
                     // consider empty models to be valid
@@ -264,7 +265,7 @@ app.directive("date", [ function () {
                     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                     var string = day + " " + months[month] + " " + year;
                     if (string == modelValue)
-                    return true;
+                        return true;
                 }
 
                 // it is invalid

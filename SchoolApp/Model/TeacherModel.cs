@@ -128,7 +128,8 @@ namespace Model
         [DataMember]
         public string Email { get; set; }
 
-
+        [DataMember]
+        public string Url { get; set; }
     }
 
     [DataContract]

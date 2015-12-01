@@ -292,6 +292,7 @@ namespace Helper
         internal static EditTeacher MapToEditTeacherModel(Teacher teacher)
         {
             var editteacher = new EditTeacher();
+            editteacher.Url = FileHelper.GetFileUrl(teacher.ImagePath);
             editteacher.City = teacher.City;
             editteacher.Country = teacher.Country;
             editteacher.Dob = teacher.DOB;

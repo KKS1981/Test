@@ -36,6 +36,9 @@ function yeartable(scope, element, attribute) {
         $(element).dataTable().fnDestroy();
     }
     a.DataTable({
+        "createdRow": function (row, data, dataIndex) {
+            scope.onrowadd(row);
+        },
         data: scope[attribute.data],
         columns: [
             { data: 'StartYear' },

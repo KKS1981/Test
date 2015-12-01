@@ -86,8 +86,9 @@ app.controllerProvider.register('teacherController', ['$scope', '$compile', '$st
             if ($scope.teacher.Doj != null && $scope.teacher.Doj != undefined && $scope.teacher.Doj != "")
                 teachercopy.Doj = (new Date($scope.teacher.Doj)).toMSJSON();
             ajax('/SVC/TeacherService/EditTeacher', {}, {
-                method: 'POST', isArray: false, headers: { Accept: 'application/json' }}, teachercopy, function (data) {
-               
+                method: 'POST', isArray: false, headers: { Accept: 'application/json' }
+            }, teachercopy, function (data) {
+                $state.go("teachers");
             });
         }
     }
@@ -101,6 +102,9 @@ function teachertable(scope, element, attribute) {
     }
     a.DataTable({
         data: scope[attribute.data],
+        "createdRow": function (row, data, dataIndex) {
+            scope.onrowadd(row);
+        },
         columns: [
             { data: 'ImagePath' },
             { data: 'FullName' },
@@ -112,7 +116,7 @@ function teachertable(scope, element, attribute) {
         "columnDefs": [
             {
                 "render": function (data, type, row) {
-                    return "<a class='fa fa-edit compile' title='edit' ui-sref='editteacher(" + JSON.stringify({ id: data }) + ")' href='#/editteacher/{Id}'></a>";
+                    return "<a class='fa fa-edit compile' title='edit' ui-sref='editteacher(" + JSON.stringify({ id: data }) + ")' href='#/editteacher/{data}'></a>";
                 },
                 "targets": 5,
                 "orderable": false
@@ -169,7 +173,7 @@ function isteacherusernamevalid(scope, elm, attrs, ctrl, $q, $timeout, ajax) {
             // Mock a delayed response
             var url = attrs.remoteurl;
             var _senddata = {}
-            _senddata.ID=scope.teacher.Id;
+            _senddata.ID = scope.teacher.Id;
             _senddata.Email = scope.teacher.Email;
             _senddata[attrs["name"]] = modelValue;
             ajax(url, {}, { method: 'POST', isArray: false, headers: { Accept: 'application/json' } }, _senddata, function (data) {
